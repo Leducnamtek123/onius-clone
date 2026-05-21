@@ -39,12 +39,22 @@ export default function Header() {
       </div>
       
       <div className="h-[60px] flex items-center justify-between px-6 md:px-12">
-        <Link href="/" className="flex items-center" data-testid="nav-logo">
-          <span className={cn("text-2xl font-bold tracking-tight", scrolled ? "text-black" : "text-white")}>
-            unios.
-          </span>
-        </Link>
-        
+        <div className="flex items-center gap-3">
+          <Link href="/" className="flex items-center" data-testid="nav-logo">
+            <span className={cn("text-2xl font-bold tracking-tight", scrolled ? "text-black" : "text-white")}>
+              unios.
+            </span>
+          </Link>
+          <Link
+            href="/2026"
+            className="flex items-center gap-1.5 group"
+            data-testid="nav-2026"
+          >
+            <span className="text-[9px] font-bold tracking-widest bg-[#1139F5] text-white px-1.5 py-0.5 leading-none">NEW</span>
+            <span className={cn("text-sm font-semibold transition-opacity hover:opacity-70", scrolled ? "text-gray-900" : "text-white")}>2026</span>
+          </Link>
+        </div>
+
         <nav className="hidden md:flex items-center gap-8 text-sm font-medium">
           <Link href="#" className={cn("transition-opacity hover:opacity-70", scrolled ? "text-gray-900" : "text-white")} data-testid="nav-products">Products</Link>
           <Link href="#" className={cn("transition-opacity hover:opacity-70", scrolled ? "text-gray-900" : "text-white")}>Projects</Link>
