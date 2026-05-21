@@ -1,0 +1,20 @@
+/ : The term '/' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:32
++ $env:PORT=8080; $env:BASE_PATH=/; pnpm --filter @workspace/unios run  ...
++                                ~
+    + CategoryInfo          : ObjectNotFound: (/:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 
+[31mfailed to load config from C:\Users\leduc\Documents\onius-clone\artifacts\unios\vite.config.ts[39m
+[31merror when starting dev server:
+Error: BASE_PATH environment variable is required but was not provided.
+    at file:///C:/Users/leduc/Documents/onius-clone/artifacts/unios/node_modules/.vite-temp/vite.config.ts.timestamp-1779389906170-80ae0042b34128.mjs:20:9
+    at ModuleJob.run (node:internal/modules/esm/module_job:413:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:660:26)
+    at async loadConfigFromBundledFile (file:///C:/Users/leduc/Documents/onius-clone/node_modules/.pnpm/vite@7.3.3_@types+node@25.6_ae3e33f3fe335111b5390f6db5b643d9/node_modules/vite/dist/node/chunks/config.js:35936:12)
+    at async bundleAndLoadConfigFile (file:///C:/Users/leduc/Documents/onius-clone/node_modules/.pnpm/vite@7.3.3_@types+node@25.6_ae3e33f3fe335111b5390f6db5b643d9/node_modules/vite/dist/node/chunks/config.js:35824:17)
+    at async loadConfigFromFile (file:///C:/Users/leduc/Documents/onius-clone/node_modules/.pnpm/vite@7.3.3_@types+node@25.6_ae3e33f3fe335111b5390f6db5b643d9/node_modules/vite/dist/node/chunks/config.js:35791:42)
+    at async resolveConfig (file:///C:/Users/leduc/Documents/onius-clone/node_modules/.pnpm/vite@7.3.3_@types+node@25.6_ae3e33f3fe335111b5390f6db5b643d9/node_modules/vite/dist/node/chunks/config.js:35440:22)
+    at async _createServer (file:///C:/Users/leduc/Documents/onius-clone/node_modules/.pnpm/vite@7.3.3_@types+node@25.6_ae3e33f3fe335111b5390f6db5b643d9/node_modules/vite/dist/node/chunks/config.js:25381:67)
+    at async CAC.<anonymous> (file:///C:/Users/leduc/Documents/onius-clone/node_modules/.pnpm/vite@7.3.3_@types+node@25.6_ae3e33f3fe335111b5390f6db5b643d9/node_modules/vite/dist/node/cli.js:572:18)[39m

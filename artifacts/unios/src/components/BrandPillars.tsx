@@ -105,7 +105,7 @@ function FloatingStoryCard({
   return (
     <motion.article
       style={{ y, scale, opacity, rotate: card.rotate }}
-      className={`absolute overflow-hidden rounded-[6px] bg-[#d8d8d8] text-black shadow-[0_24px_90px_rgba(0,0,0,0.5)] ${card.className} ${
+      className={`absolute select-none overflow-hidden rounded-[6px] bg-[#d8d8d8] text-black shadow-[0_24px_90px_rgba(0,0,0,0.5)] ${card.className} ${
         card.soft ? "blur-[1.4px] opacity-70" : ""
       }`}
     >
@@ -119,7 +119,13 @@ function FloatingStoryCard({
           <BookOpen className="h-5 w-5" />
         </div>
       </div>
-      <img src={card.image} alt="" className="h-44 w-full object-cover" aria-hidden="true" />
+      <img
+        src={card.image}
+        alt=""
+        className="h-44 w-full object-cover"
+        draggable={false}
+        aria-hidden="true"
+      />
     </motion.article>
   );
 }
@@ -137,7 +143,7 @@ export default function BrandPillars() {
   return (
     <section
       ref={sectionRef}
-      className="relative h-[210vh] bg-[#0d0d0d]"
+      className="relative h-[210vh] select-none bg-[#0d0d0d]"
       data-testid="brand-pillars"
     >
       <div className="sticky top-0 h-screen overflow-hidden">

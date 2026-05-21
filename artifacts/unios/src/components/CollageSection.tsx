@@ -191,7 +191,7 @@ function PopupCard({
         <div className="mb-3.5 flex items-start justify-between gap-2.5">
         <div className="flex min-w-0 items-start gap-2.5">
           <div className="h-12 w-12 flex-none overflow-hidden bg-gray-50">
-            <img src={item.image} alt={item.title} className="h-full w-full object-cover" />
+            <img src={item.image} alt={item.title} className="h-full w-full object-cover" draggable={false} />
           </div>
           <div className="min-w-0">
             <div className="mb-1.5 flex gap-1">
@@ -263,7 +263,7 @@ export default function CollageSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative overflow-hidden bg-white px-0 pb-16 pt-20 md:pt-24" data-testid="collage-section">
+    <section ref={sectionRef} className="relative select-none overflow-hidden bg-white px-0 pb-16 pt-20 md:pt-24" data-testid="collage-section">
       <div className="relative mx-auto max-w-[1600px]">
         <div className="relative min-h-[clamp(980px,102vw,1420px)]">
           <motion.div
@@ -271,7 +271,7 @@ export default function CollageSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-120px" }}
             transition={{ duration: 0.55 }}
-            className="pointer-events-none absolute left-1/2 top-[38%] z-10 w-[min(92vw,1320px)] -translate-x-1/2 -translate-y-1/2"
+            className="pointer-events-none absolute left-1/2 top-[44%] z-10 w-[min(92vw,1320px)] -translate-x-1/2 -translate-y-1/2 md:top-[48%]"
           >
             <h2 className="text-center text-[clamp(2.6rem,5vw,4.6rem)] font-semibold leading-[0.92] tracking-tight text-black">
               <span className="underline decoration-[4px] underline-offset-[12px]">Changing</span> how the world views lighting
@@ -293,7 +293,7 @@ export default function CollageSection() {
                 transform: item.artTransform,
               }}
             >
-              <img src={item.image} alt={item.title} className="w-full object-contain" />
+              <img src={item.image} alt={item.title} className="w-full object-contain" draggable={false} />
             </motion.div>
           ))}
 

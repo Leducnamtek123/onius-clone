@@ -128,7 +128,7 @@ export default function HeroSlider() {
   }
 
   return (
-    <section className="relative bg-black text-white pt-[92px]" data-testid="hero-slider">
+    <section className="relative select-none bg-black pt-[92px] text-white" data-testid="hero-slider">
       <div className="relative h-[calc(100vh-92px)] min-h-[760px] overflow-hidden">
         <motion.div
           className="absolute inset-0"
@@ -187,6 +187,7 @@ export default function HeroSlider() {
                 playsInline
                 preload="auto"
                 poster={slide.image}
+                draggable={false}
               >
                 <source src={slide.video} type="video/mp4" />
               </video>
@@ -211,6 +212,7 @@ export default function HeroSlider() {
                         src={slide.image}
                         alt={slide.title}
                         className="h-full w-full object-cover object-center"
+                        draggable={false}
                       />
                     </div>
                   </div>

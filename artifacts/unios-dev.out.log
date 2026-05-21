@@ -1,0 +1,7 @@
+
+> @workspace/unios@0.0.0 dev C:\Users\leduc\Documents\onius-clone\artifacts\unios
+> vite --config vite.config.ts --host 0.0.0.0
+
+C:\Users\leduc\Documents\onius-clone\artifacts\unios:
+ ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL  @workspace/unios@0.0.0 dev: `vite --config vite.config.ts --host 0.0.0.0`
+Exit status 1
