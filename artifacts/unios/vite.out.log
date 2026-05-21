@@ -12,3 +12,7 @@
   [32m➜[39m  [1mNetwork[22m: [36mhttp://192.168.1.42:[1m3000[22m/[39m
   [32m➜[39m  [1mNetwork[22m: [36mhttp://192.168.1.27:[1m3000[22m/[39m
 [2m[32m  ➜[39m[22m[2m  press [22m[1mh + enter[22m[2m to show help[22m
+[2m3:07:22 AM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32m✨ new dependencies optimized: [33mi18next, react-i18next[32m[39m
+[2m3:07:22 AM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32m✨ optimized dependencies changed. reloading[39m
+[2m3:08:42 AM[22m [36m[1m[vite][22m[39m [32mvite.config.ts changed, restarting server...[39m
+[2m3:08:42 AM[22m [36m[1m[vite][22m[39m server restarted.
