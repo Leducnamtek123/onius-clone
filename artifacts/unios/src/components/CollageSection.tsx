@@ -310,16 +310,6 @@ export default function CollageSection() {
             {activeItem && <PopupCard item={activeItem} onClose={() => setActiveId(null)} />}
           </AnimatePresence>
         </div>
-
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.4, delay: 0.1 }}
-          className="mt-4 text-xs text-gray-400"
-        >
-          Click the hotspot pins to explore products featured in each space
-        </motion.p>
       </div>
     </section>
   );
