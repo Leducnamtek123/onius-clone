@@ -50,33 +50,50 @@ export default function Header() {
   }, [searchOpen]);
 
   const textColor = scrolled || !isDarkHero ? "text-gray-900" : "text-white";
-  const topBarBg = scrolled || !isDarkHero ? "bg-[#f5f5f5] text-gray-500 border-gray-200" : "bg-black/20 text-white/80 border-white/10";
+  const topBarBg =
+    scrolled || !isDarkHero
+      ? "bg-[#f5f5f5] text-gray-500 border-gray-200"
+      : "bg-black/20 text-white/80 border-white/10";
   const headerBg = scrolled || !isDarkHero ? "bg-white shadow-sm" : "bg-transparent";
 
   return (
     <header
-      className={cn("fixed top-0 left-0 right-0 z-50 flex flex-col transition-all duration-300", headerBg)}
+      className={cn(
+        "fixed top-0 left-0 right-0 z-50 flex flex-col transition-all duration-300",
+        headerBg,
+      )}
       data-testid="header"
     >
-      {/* Top utility bar */}
-      <div className={cn("h-8 flex items-center justify-between px-6 md:px-12 text-[10px] uppercase tracking-wider font-semibold border-b", topBarBg)}>
+      <div
+        className={cn(
+          "h-8 flex items-center justify-between px-6 md:px-12 text-[10px] uppercase tracking-wider font-semibold border-b",
+          topBarBg,
+        )}
+      >
         <div className="flex items-center gap-2 cursor-pointer hover:opacity-70 transition-opacity">
           <Globe className="w-3 h-3" />
           <span>EN</span>
           <ChevronDown className="w-2.5 h-2.5" />
         </div>
         <div className="flex items-center gap-4">
-          <Link href="/images" className="hover:opacity-70 transition-opacity" data-testid="nav-image-library">Image Library</Link>
+          <Link href="/images" className="hover:opacity-70 transition-opacity" data-testid="nav-image-library">
+            Image Library
+          </Link>
           <span className="opacity-30">|</span>
-          <Link href="/where-to-buy" className="hover:opacity-70 transition-opacity" data-testid="nav-where-to-buy">Where to buy</Link>
+          <Link href="/where-to-buy" className="hover:opacity-70 transition-opacity" data-testid="nav-where-to-buy">
+            Where to buy
+          </Link>
           <span className="opacity-30">|</span>
-          <Link href="/contact" className="hover:opacity-70 transition-opacity" data-testid="nav-contact">Contact</Link>
+          <Link href="/contact" className="hover:opacity-70 transition-opacity" data-testid="nav-contact">
+            Contact
+          </Link>
           <span className="opacity-30">|</span>
-          <Link href="/toolbox" className="hover:opacity-70 transition-opacity" data-testid="nav-login">Login/Signup</Link>
+          <Link href="/toolbox" className="hover:opacity-70 transition-opacity" data-testid="nav-login">
+            Login/Signup
+          </Link>
         </div>
       </div>
 
-      {/* Main nav */}
       <div className="h-[60px] flex items-center justify-between px-6 md:px-12">
         <div className="flex items-center gap-3">
           <Link href="/" className="flex items-center" data-testid="nav-logo">
@@ -85,8 +102,12 @@ export default function Header() {
             </span>
           </Link>
           <Link href="/2026" className="flex items-center gap-1.5" data-testid="nav-2026">
-            <span className="text-[9px] font-bold tracking-widest bg-[#1139F5] text-white px-1.5 py-0.5 leading-none">NEW</span>
-            <span className={cn("text-sm font-semibold transition-colors hover:opacity-70", textColor)}>2026</span>
+            <span className="text-[9px] font-bold tracking-widest bg-[#1139F5] text-white px-1.5 py-0.5 leading-none">
+              NEW
+            </span>
+            <span className={cn("text-sm font-semibold transition-colors hover:opacity-70", textColor)}>
+              2026
+            </span>
           </Link>
         </div>
 
@@ -120,7 +141,6 @@ export default function Header() {
             Resources
           </Link>
 
-          {/* Brand dropdown */}
           <div ref={brandRef} className="relative">
             <button
               onClick={() => setBrandOpen((v) => !v)}
@@ -155,17 +175,19 @@ export default function Header() {
               "hidden md:flex text-xs font-semibold px-4 py-2 border transition-colors",
               scrolled || !isDarkHero
                 ? "border-gray-300 text-gray-900 hover:bg-gray-50"
-                : "border-white/30 text-white hover:bg-white/10"
+                : "border-white/30 text-white hover:bg-white/10",
             )}
             data-testid="nav-toolbox"
           >
             My Toolbox
           </Link>
 
-          {/* Search toggle */}
           <button
             onClick={() => setSearchOpen((v) => !v)}
-            className={cn("p-2 transition-colors rounded-full", scrolled || !isDarkHero ? "text-gray-900 hover:bg-gray-100" : "text-white hover:bg-white/10")}
+            className={cn(
+              "p-2 transition-colors rounded-full",
+              scrolled || !isDarkHero ? "text-gray-900 hover:bg-gray-100" : "text-white hover:bg-white/10",
+            )}
             data-testid="nav-search-toggle"
           >
             {searchOpen ? <X className="w-4 h-4" /> : <Search className="w-4 h-4" />}
@@ -173,10 +195,16 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Expandable search bar */}
       {searchOpen && (
-        <div className={cn("border-t px-6 md:px-12 py-3 flex items-center gap-3", scrolled || !isDarkHero ? "bg-white border-gray-200" : "bg-black/40 border-white/10")}>
-          <Search className={cn("w-4 h-4 flex-shrink-0", scrolled || !isDarkHero ? "text-gray-400" : "text-white/50")} />
+        <div
+          className={cn(
+            "border-t px-6 md:px-12 py-3 flex items-center gap-3",
+            scrolled || !isDarkHero ? "bg-white border-gray-200" : "bg-black/40 border-white/10",
+          )}
+        >
+          <Search
+            className={cn("w-4 h-4 flex-shrink-0", scrolled || !isDarkHero ? "text-gray-400" : "text-white/50")}
+          />
           <input
             ref={searchRef}
             type="text"
@@ -191,7 +219,7 @@ export default function Header() {
             placeholder="Search products, projects, stories..."
             className={cn(
               "flex-1 bg-transparent border-none outline-none text-sm",
-              scrolled || !isDarkHero ? "text-gray-900 placeholder:text-gray-400" : "text-white placeholder:text-white/40"
+              scrolled || !isDarkHero ? "text-gray-900 placeholder:text-gray-400" : "text-white placeholder:text-white/40",
             )}
             data-testid="header-search-input"
           />

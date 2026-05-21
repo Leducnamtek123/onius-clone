@@ -1,90 +1,111 @@
 import { motion } from "framer-motion";
 import { Link } from "wouter";
 import { Check } from "lucide-react";
-import configuratorImg from "@/assets/configurator.png";
 
 export default function ConfiguratorSection() {
   const points = [
     "Progressively specify technical specifications",
     "Product finishes",
     "Save as a favourite or add to a Toolbox project",
-    "Conveniently access product resources, 3D assets and more"
+    "Conveniently access product resources, 3D assets and more",
   ];
 
   return (
-    <section className="py-32 px-6 md:px-12 bg-[#111] text-white" data-testid="configurator-section">
-      <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-        
-        <motion.div 
-          initial={{ opacity: 0, x: -40 }}
+    <section className="bg-[#111] px-6 py-24 text-white md:px-12 md:py-32" data-testid="configurator-section">
+      <div className="mx-auto grid max-w-[1440px] grid-cols-1 gap-16 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
+        <motion.div
+          initial={{ opacity: 0, x: -28 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.75 }}
         >
-          <div className="inline-block px-3 py-1 mb-8 border border-white/20 rounded-full text-xs font-semibold tracking-widest uppercase">
-            My Toolbox
-          </div>
-          <h2 className="text-4xl md:text-6xl font-semibold tracking-tight mb-8">
-            Configure. Specify. Save.
+          <p className="mb-4 text-[10px] uppercase tracking-[0.26em] text-white/45">My Toolbox</p>
+          <h2 className="mb-8 max-w-[10ch] text-4xl font-semibold tracking-tight leading-[0.95] md:text-6xl">
+            Configure.
+            <br />
+            Specify.
+            <br />
+            Save.
           </h2>
-          
-          <ul className="space-y-6 mb-12">
-            {points.map((point, i) => (
-              <li key={i} className="flex items-start gap-4">
-                <div className="mt-1 flex-shrink-0 w-5 h-5 rounded-full bg-white/10 flex items-center justify-center">
-                  <Check className="w-3 h-3 text-white" />
-                </div>
-                <span className="text-lg text-white/70 font-light">{point}</span>
+
+          <ul className="mb-10 space-y-5">
+            {points.map((point) => (
+              <li key={point} className="flex items-start gap-3 text-white/76">
+                <span className="mt-1 inline-flex h-5 w-5 items-center justify-center rounded-full border border-white/18">
+                  <Check className="h-3 w-3" />
+                </span>
+                <span className="text-sm md:text-base leading-relaxed">{point}</span>
               </li>
             ))}
           </ul>
 
-          <Link href="#" className="inline-flex items-center justify-center px-8 py-4 bg-primary text-primary-foreground font-semibold rounded hover:bg-primary/90 transition-colors">
-            Start configuring now
-          </Link>
-        </motion.div>
-
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="relative rounded-2xl bg-white/5 p-8 border border-white/10"
-        >
-          <div className="bg-white rounded-xl overflow-hidden shadow-2xl">
-            <div className="p-8 flex flex-col items-center border-b border-gray-100">
-              <img src={configuratorImg} alt="Product Configurator" className="h-64 object-contain mb-8" />
-              <div className="w-full">
-                <h3 className="text-gray-900 text-xl font-bold mb-2">Titanium Series</h3>
-                <p className="text-gray-500 text-sm mb-6">Pendant Luminaire</p>
-                
-                <div className="space-y-4">
-                  <div>
-                    <p className="text-xs font-semibold text-gray-900 uppercase tracking-wider mb-2">Finish</p>
-                    <div className="flex gap-3">
-                      <div className="w-8 h-8 rounded-full bg-black border-2 border-white ring-2 ring-transparent cursor-pointer"></div>
-                      <div className="w-8 h-8 rounded-full bg-white border-2 border-gray-200 ring-2 ring-primary cursor-pointer"></div>
-                      <div className="w-8 h-8 rounded-full bg-[#B87333] border-2 border-white ring-2 ring-transparent cursor-pointer"></div>
-                    </div>
-                  </div>
-                  <div>
-                    <p className="text-xs font-semibold text-gray-900 uppercase tracking-wider mb-2">Beam Angle</p>
-                    <div className="flex gap-2">
-                      <div className="px-4 py-2 border border-gray-200 rounded text-sm text-gray-900 font-medium cursor-pointer">15°</div>
-                      <div className="px-4 py-2 border-2 border-primary rounded text-sm text-primary font-medium cursor-pointer">30°</div>
-                      <div className="px-4 py-2 border border-gray-200 rounded text-sm text-gray-900 font-medium cursor-pointer">45°</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="bg-gray-50 p-4 flex justify-between items-center text-sm text-gray-600">
-              <span>Code: T10-W-30</span>
-              <span className="font-semibold text-gray-900">Added to project</span>
-            </div>
+          <div className="flex flex-wrap items-center gap-4">
+            <Link
+              href="/toolbox"
+              className="inline-flex items-center gap-2 border-b border-white/35 pb-1 text-xs font-semibold uppercase tracking-[0.22em] hover:border-white transition-colors"
+            >
+              Start configuring now
+            </Link>
+            <span className="text-sm text-white/45">Register or Login</span>
           </div>
         </motion.div>
 
+        <motion.div
+          initial={{ opacity: 0, scale: 0.97 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.75, delay: 0.1 }}
+          className="relative"
+        >
+          <div className="overflow-hidden border border-white/10 bg-white text-gray-900 shadow-2xl">
+            <div className="border-b border-gray-100 px-8 py-6">
+              <p className="text-[10px] uppercase tracking-[0.24em] text-gray-400">Toolbox preview</p>
+              <h3 className="mt-2 text-2xl font-semibold">Unios Toolbox</h3>
+              <p className="mt-2 max-w-xl text-sm leading-relaxed text-gray-500">
+                Create, collaborate and manage luminaire schedules in no time.
+              </p>
+            </div>
+
+            <div className="grid gap-0 lg:grid-cols-[1fr_0.9fr]">
+              <div className="bg-[#f6f6f6] px-8 py-10">
+                <div className="mb-6 flex items-center gap-2">
+                  <span className="text-xs font-semibold uppercase tracking-[0.2em] text-gray-500">Schedules</span>
+                  <span className="text-[10px] uppercase tracking-[0.2em] text-[#1139F5]">Live</span>
+                </div>
+                <div className="space-y-3">
+                  {[
+                    "Generate and manage infinite luminaire schedules",
+                    "Export as Excel or PDF files",
+                    "Bookmark and save your favourite luminaires",
+                    "Collaborate and share with clients and colleagues",
+                    "Customise data sheets with types and details",
+                  ].map((item) => (
+                    <div key={item} className="flex items-start gap-3 rounded border border-gray-200 bg-white px-4 py-3">
+                      <span className="mt-1 h-2 w-2 rounded-full bg-[#1139F5]" />
+                      <span className="text-sm leading-relaxed text-gray-700">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="flex flex-col justify-between px-8 py-10">
+                <div>
+                  <p className="text-[10px] uppercase tracking-[0.24em] text-gray-400">Access</p>
+                  <p className="mt-4 text-sm leading-relaxed text-gray-600">
+                    Are you an architect, lighting designer or other professional?
+                  </p>
+                  <p className="mt-2 text-sm text-[#1139F5]">Find out about Toolbox+</p>
+                </div>
+
+                <div className="mt-10 border-t border-gray-100 pt-6">
+                  <button className="w-full bg-[#1139F5] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#0d2fd4]">
+                    Register or Login
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

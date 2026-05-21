@@ -1,7 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
 import { Link } from "wouter";
-
 import comm1 from "@/assets/community-1.png";
 import comm2 from "@/assets/community-2.png";
 import comm3 from "@/assets/community-3.png";
@@ -11,55 +9,62 @@ export default function CommunitySection() {
     {
       image: comm1,
       title: "Join Toolbox",
-      desc: "Create an account to access resources, specify products, and manage your lighting projects."
+      desc: "Unlock access to product selection, configuration and scheduling workflows.",
     },
     {
       image: comm2,
       title: "Find an office",
-      desc: "Visit one of our 6 showrooms across the APAC region to experience Unios lighting firsthand."
+      desc: "Visit a showroom and meet the Unios team across the APAC region.",
     },
     {
       image: comm3,
       title: "Find a distributor",
-      desc: "Locate a trusted partner in our global network of architectural lighting distributors."
-    }
+      desc: "Connect with a trusted partner in our global network.",
+    },
   ];
 
   return (
-    <section className="py-32 px-6 md:px-12 bg-gray-50" data-testid="community-section">
-      <div className="max-w-[1400px] mx-auto">
-        <motion.h2 
-          initial={{ opacity: 0, y: 20 }}
+    <section className="bg-[#f7f7f7] px-6 py-24 md:px-12 md:py-32" data-testid="community-section">
+      <div className="mx-auto max-w-[1440px]">
+        <motion.div
+          initial={{ opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 mb-16 text-center"
+          transition={{ duration: 0.55 }}
+          className="mb-12"
         >
-          Join our community
-        </motion.h2>
+          <p className="mb-3 text-[10px] uppercase tracking-[0.24em] text-gray-400">Join our community</p>
+          <h2 className="text-4xl font-semibold tracking-tight text-gray-900 md:text-5xl">
+            Join our community
+          </h2>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
           {cards.map((card, i) => (
             <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 30 }}
+              key={card.title}
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: i * 0.1 }}
-              className="group cursor-pointer bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+              transition={{ duration: 0.55, delay: i * 0.08 }}
+              className="overflow-hidden bg-white"
             >
-              <div className="w-full aspect-[4/3] overflow-hidden">
-                <img 
-                  src={card.image} 
-                  alt={card.title} 
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              <div className="aspect-[4/3] overflow-hidden">
+                <img
+                  src={card.image}
+                  alt={card.title}
+                  className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
                 />
               </div>
-              <div className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-primary transition-colors">{card.title}</h3>
-                <p className="text-gray-600 font-light mb-8">{card.desc}</p>
-                <Link href="#" className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-gray-900 group-hover:text-primary transition-colors">
-                  Learn more <ArrowRight className="w-4 h-4" />
+              <div className="p-7">
+                <p className="mb-3 text-[10px] uppercase tracking-[0.24em] text-gray-400">Entry point</p>
+                <h3 className="text-2xl font-semibold text-gray-900">{card.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-gray-500">{card.desc}</p>
+                <Link
+                  href="/toolbox"
+                  className="mt-6 inline-flex items-center gap-2 border-b border-black pb-1 text-xs font-semibold uppercase tracking-[0.22em] hover:opacity-70 transition-opacity"
+                >
+                  Learn more
                 </Link>
               </div>
             </motion.div>

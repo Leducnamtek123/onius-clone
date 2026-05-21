@@ -1,362 +1,323 @@
-import { useState, useRef, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, Download, X, Heart, Plus, ChevronRight } from "lucide-react";
-import { Link } from "wouter";
+import { useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { ChevronRight, Download, Heart, Plus, X } from "lucide-react";
 
-import collage1 from "@/assets/collage-1.png";
-import collage2 from "@/assets/collage-2.png";
-import collage3 from "@/assets/collage-3.png";
-import collage4 from "@/assets/collage-4.png";
-import collage5 from "@/assets/collage-5.png";
 import hero1 from "@/assets/hero-1.png";
 import hero2 from "@/assets/hero-2.png";
 import hero3 from "@/assets/hero-3.png";
 import hero4 from "@/assets/hero-4.png";
 import hero5 from "@/assets/hero-5.png";
+import hero6 from "@/assets/hero-6.png";
 
-interface Product {
+type Hotspot = {
   id: string;
-  name: string;
-  category: string;
   image: string;
+  artWidth: string;
+  artTop: string;
+  artLeft: string;
+  artTransform: string;
+  pinTop: string;
+  pinLeft: string;
+  popupTop: string;
+  popupLeft: string;
+  popupTransform: string;
+  title: string;
+  downloads: string[];
   stock: string;
-  downloads: { label: string; icon: string }[];
-  top: string;
-  left: string;
-}
-
-interface Hotspot {
-  products: Product[];
-  top: string;
-  left: string;
-  imageIndex: number;
-}
-
-const products: Product[] = [
-  {
-    id: "lx-infinity",
-    name: "LX Infinity Linear Pendant",
-    category: "LINEAR PENDANT",
-    image: hero1,
-    stock: "This item is generally stocked, please check with your Unios distributor",
-    downloads: [
-      { label: "Product images", icon: "img" },
-      { label: "Installation instructions", icon: "pdf" },
-      { label: "Sketchup objects", icon: "3d" },
-      { label: "Revit family", icon: "3d" },
-      { label: "2D CAD", icon: "cad" },
-      { label: "All IES files", icon: "ies" },
-    ],
-    top: "35%",
-    left: "20%",
-  },
-  {
-    id: "ion-r-mini",
-    name: "ION R Mini Recessed Downlight",
-    category: "RECESSED DOWNLIGHT",
-    image: hero2,
-    stock: "This item is generally stocked, please check with your Unios distributor",
-    downloads: [
-      { label: "Product images", icon: "img" },
-      { label: "Installation instructions", icon: "pdf" },
-      { label: "Sketchup objects", icon: "3d" },
-      { label: "Revit family", icon: "3d" },
-      { label: "2D CAD", icon: "cad" },
-      { label: "All IES files", icon: "ies" },
-    ],
-    top: "55%",
-    left: "70%",
-  },
-  {
-    id: "kobe-g2",
-    name: "Kobe G2 Surface Downlight",
-    category: "SURFACE DOWNLIGHT",
-    image: hero3,
-    stock: "This item is generally stocked, please check with your Unios distributor",
-    downloads: [
-      { label: "Product images", icon: "img" },
-      { label: "Installation instructions", icon: "pdf" },
-      { label: "Sketchup objects", icon: "3d" },
-      { label: "Revit family", icon: "3d" },
-      { label: "2D CAD", icon: "cad" },
-      { label: "All IES files", icon: "ies" },
-    ],
-    top: "40%",
-    left: "60%",
-  },
-  {
-    id: "pandia",
-    name: "Pandia Decorative Pendant",
-    category: "DECORATIVE PENDANT",
-    image: hero4,
-    stock: "This item is generally stocked, please check with your Unios distributor",
-    downloads: [
-      { label: "Product images", icon: "img" },
-      { label: "Installation instructions", icon: "pdf" },
-      { label: "Sketchup objects", icon: "3d" },
-      { label: "Revit family", icon: "3d" },
-      { label: "All IES files", icon: "ies" },
-    ],
-    top: "30%",
-    left: "45%",
-  },
-  {
-    id: "inter",
-    name: "Inter Linear Track System",
-    category: "LINEAR TRACK",
-    image: hero5,
-    stock: "This item is generally stocked, please check with your Unios distributor",
-    downloads: [
-      { label: "Product images", icon: "img" },
-      { label: "Installation instructions", icon: "pdf" },
-      { label: "Sketchup objects", icon: "3d" },
-      { label: "Revit family", icon: "3d" },
-      { label: "2D CAD", icon: "cad" },
-      { label: "All IES files", icon: "ies" },
-    ],
-    top: "50%",
-    left: "30%",
-  },
-];
+};
 
 const hotspots: Hotspot[] = [
-  { products: [products[0]], top: "35%", left: "20%", imageIndex: 0 },
-  { products: [products[1]], top: "55%", left: "68%", imageIndex: 1 },
-  { products: [products[2]], top: "40%", left: "62%", imageIndex: 2 },
-  { products: [products[3]], top: "32%", left: "44%", imageIndex: 3 },
-  { products: [products[4]], top: "52%", left: "28%", imageIndex: 4 },
+  {
+    id: "pendant",
+    image: hero4,
+    artWidth: "26rem",
+    artTop: "10%",
+    artLeft: "-4%",
+    artTransform: "translate(-8%, -8%) rotate(7deg)",
+    pinTop: "14%",
+    pinLeft: "7%",
+    popupTop: "17%",
+    popupLeft: "9%",
+    popupTransform: "translate(0, 0)",
+    title: "Pandia Glass Collection",
+    downloads: ["Hình sản phẩm", "Hướng dẫn lắp đặt", "Đối tượng Sketchup", "Thư viện Revit", "2D CAD", "Tất cả tệp IES"],
+    stock:
+      "Tự hào giới thiệu Bộ sưu tập Pandia Glass - tuyệt tác mới nhất, thể hiện hành trình của Unios và Chris Connell trong việc khám phá sự tối giản trong thủy tinh, ánh sáng và thiết kế đậm chất Úc.",
+  },
+  {
+    id: "downlight",
+    image: hero2,
+    artWidth: "21rem",
+    artTop: "9%",
+    artLeft: "30%",
+    artTransform: "translate(-50%, -4%)",
+    pinTop: "15%",
+    pinLeft: "36%",
+    popupTop: "18%",
+    popupLeft: "34%",
+    popupTransform: "translate(-42%, 0)",
+    title: "Titanium G2 Downlight",
+    downloads: ["Hình sản phẩm", "Hướng dẫn lắp đặt", "Đối tượng Sketchup", "Thư viện Revit", "2D CAD", "Tất cả tệp IES"],
+    stock: "This item is generally stocked, please check with your Unios distributor.",
+  },
+  {
+    id: "curve",
+    image: hero6,
+    artWidth: "20rem",
+    artTop: "9%",
+    artLeft: "86%",
+    artTransform: "translate(-16%, -10%) rotate(9deg)",
+    pinTop: "17%",
+    pinLeft: "89%",
+    popupTop: "18%",
+    popupLeft: "79%",
+    popupTransform: "translate(-100%, 0)",
+    title: "Inter Linear Collection",
+    downloads: ["Hình sản phẩm", "Hướng dẫn lắp đặt", "Đối tượng Sketchup", "Thư viện Revit", "2D CAD", "Tất cả tệp IES"],
+    stock: "Combining remarkable colour accuracy, consistency, and shorter lead times, the Inter offers 12 profiles for a wide range of applications.",
+  },
+  {
+    id: "track",
+    image: hero1,
+    artWidth: "27rem",
+    artTop: "61%",
+    artLeft: "-1%",
+    artTransform: "translate(-6%, 0%) rotate(-1deg)",
+    pinTop: "64%",
+    pinLeft: "10%",
+    popupTop: "59%",
+    popupLeft: "9%",
+    popupTransform: "translate(0, -100%)",
+    title: "LX Infinity",
+    downloads: ["Hình sản phẩm", "Hướng dẫn lắp đặt", "Đối tượng Sketchup", "Thư viện Revit", "2D CAD", "Tất cả tệp IES"],
+    stock: "Discover the latest evolution of our LX Collection, now enhanced with CRI90+ and expanded mounting options.",
+  },
+  {
+    id: "spot",
+    image: hero3,
+    artWidth: "18rem",
+    artTop: "67%",
+    artLeft: "39%",
+    artTransform: "translate(-50%, 0%) rotate(4deg)",
+    pinTop: "78%",
+    pinLeft: "38%",
+    popupTop: "70%",
+    popupLeft: "39%",
+    popupTransform: "translate(-50%, -100%)",
+    title: "Kobe G2",
+    downloads: ["Hình sản phẩm", "Hướng dẫn lắp đặt", "Đối tượng Sketchup", "Thư viện Revit", "2D CAD", "Tất cả tệp IES"],
+    stock: "Half the bulk, all the power - explore the new version of Kobe that provides better optical control and comfort.",
+  },
+  {
+    id: "mini",
+    image: hero5,
+    artWidth: "16rem",
+    artTop: "61%",
+    artLeft: "56%",
+    artTransform: "translate(-46%, 0%) rotate(-2deg)",
+    pinTop: "69%",
+    pinLeft: "55%",
+    popupTop: "69%",
+    popupLeft: "54%",
+    popupTransform: "translate(-50%, -100%)",
+    title: "ION R Mini",
+    downloads: ["Hình sản phẩm", "Hướng dẫn lắp đặt", "Đối tượng Sketchup", "Thư viện Revit", "2D CAD", "Tất cả tệp IES"],
+    stock: "The update that completes the Unios signature range. Compact in form, uncompromising in potential.",
+  },
+  {
+    id: "grid",
+    image: hero6,
+    artWidth: "19rem",
+    artTop: "69%",
+    artLeft: "84%",
+    artTransform: "translate(-34%, 0%)",
+    pinTop: "79%",
+    pinLeft: "89%",
+    popupTop: "69%",
+    popupLeft: "79%",
+    popupTransform: "translate(-100%, -100%)",
+    title: "Akira G2",
+    downloads: ["Hình sản phẩm", "Hướng dẫn lắp đặt", "Đối tượng Sketchup", "Thư viện Revit", "2D CAD", "Tất cả tệp IES"],
+    stock: "Akira G2 brings wellness into general illumination with indirect light, truer colour, and exceptional glare control.",
+  },
 ];
 
-const collageImages = [collage1, collage2, collage3, collage4, collage5];
-
-function DownloadIcon({ type }: { type: string }) {
-  if (type === "img") return <span className="text-[#1139F5] mr-1">&#9632;</span>;
-  if (type === "3d") return <span className="text-[#1139F5] mr-1">&#11041;</span>;
-  return <span className="text-[#1139F5] mr-1">&#8659;</span>;
-}
-
-interface ProductPopupProps {
-  product: Product;
-  onClose: () => void;
-  anchorRef: React.RefObject<HTMLDivElement | null>;
-}
-
-function ProductPopup({ product, onClose, anchorRef }: ProductPopupProps) {
-  const popupRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    function handleClick(e: MouseEvent) {
-      if (
-        popupRef.current &&
-        !popupRef.current.contains(e.target as Node) &&
-        anchorRef.current &&
-        !anchorRef.current.contains(e.target as Node)
-      ) {
-        onClose();
-      }
-    }
-    document.addEventListener("mousedown", handleClick);
-    return () => document.removeEventListener("mousedown", handleClick);
-  }, [onClose, anchorRef]);
-
+function HotspotPin({
+  item,
+  active,
+  onClick,
+}: {
+  item: Hotspot;
+  active: boolean;
+  onClick: () => void;
+}) {
   return (
-    <motion.div
-      ref={popupRef}
-      initial={{ opacity: 0, scale: 0.92, y: 8 }}
-      animate={{ opacity: 1, scale: 1, y: 0 }}
-      exit={{ opacity: 0, scale: 0.92, y: 8 }}
-      transition={{ duration: 0.18 }}
-      className="absolute z-50 bg-white shadow-2xl w-[300px] rounded-sm"
-      style={{ top: "calc(100% + 12px)", left: "50%", transform: "translateX(-50%)" }}
-      data-testid={`product-popup-${product.id}`}
+    <button
+      type="button"
+      onClick={onClick}
+      className="group absolute z-20 flex h-6 w-6 -translate-x-1/2 -translate-y-1/2 items-center justify-center"
+      style={{ top: item.pinTop, left: item.pinLeft }}
+      aria-label={item.title}
+      data-testid={`hotspot-${item.id}`}
     >
-      <div className="p-4 border-b border-gray-100 flex items-start gap-3">
-        <div className="w-14 h-14 flex-shrink-0 bg-gray-50 rounded overflow-hidden">
-          <img src={product.image} alt={product.name} className="w-full h-full object-cover" />
-        </div>
-        <div className="flex-1 min-w-0">
-          <p className="text-[10px] text-gray-400 uppercase tracking-wider mb-0.5">{product.category}</p>
-          <p className="text-sm font-semibold text-gray-900 leading-snug">{product.name}</p>
-        </div>
-        <button
-          onClick={onClose}
-          className="flex-shrink-0 p-1 hover:bg-gray-100 rounded transition-colors"
-          data-testid="popup-close"
-        >
-          <X className="w-3.5 h-3.5 text-gray-400" />
-        </button>
-      </div>
-
-      <div className="p-4">
-        <p className="text-[11px] font-semibold text-gray-900 uppercase tracking-wider mb-2">Downloads</p>
-        <ul className="space-y-1.5 mb-4">
-          {product.downloads.map((dl) => (
-            <li key={dl.label}>
-              <a
-                href="#"
-                className="flex items-center gap-1.5 text-xs text-[#1139F5] hover:underline"
-                data-testid={`download-${dl.label.toLowerCase().replace(/\s/g, "-")}`}
-              >
-                <Download className="w-3 h-3 flex-shrink-0" />
-                {dl.label}
-              </a>
-            </li>
-          ))}
-        </ul>
-
-        <div className="mb-4 pb-4 border-b border-gray-100">
-          <p className="text-[10px] font-semibold text-gray-400 uppercase tracking-wider mb-1">Standard</p>
-          <p className="text-[11px] text-gray-500 leading-snug">{product.stock}</p>
-        </div>
-
-        <a
-          href="#"
-          className="flex items-center gap-1 text-xs font-semibold text-gray-900 hover:text-[#1139F5] transition-colors mb-4"
-          data-testid="view-product-details"
-        >
-          View product details <ChevronRight className="w-3.5 h-3.5" />
-        </a>
-
-        <div className="flex items-center gap-2">
-          <button
-            className="flex-1 flex items-center justify-center gap-2 bg-[#1139F5] text-white text-xs font-semibold py-2.5 px-4 hover:bg-[#0d2fd4] transition-colors rounded-sm"
-            data-testid="configure-button"
-          >
-            <span className="text-[10px]">&#9776;</span> Configure
-          </button>
-          <button
-            className="p-2.5 border border-gray-200 hover:border-gray-400 transition-colors rounded-sm"
-            data-testid="add-to-toolbox"
-          >
-            <Plus className="w-4 h-4 text-gray-600" />
-          </button>
-          <button
-            className="p-2.5 border border-gray-200 hover:border-gray-400 transition-colors rounded-sm"
-            data-testid="add-to-favourites"
-          >
-            <Heart className="w-4 h-4 text-gray-600" />
-          </button>
-        </div>
-      </div>
-    </motion.div>
+      <span className="absolute inset-0 rounded-full border-[1.5px] border-[#2d4cff] bg-white/90 transition-transform duration-200 group-hover:scale-110 group-active:scale-95" />
+      <span className="relative h-1.5 w-1.5 rounded-full bg-[#2d4cff]" />
+      {active && <span className="absolute inset-0 rounded-full border border-[#2d4cff]/25 animate-ping" />}
+    </button>
   );
 }
 
-interface HotspotPinProps {
-  hotspot: Hotspot;
-  imageRef: React.RefObject<HTMLDivElement | null>;
-}
-
-function HotspotPin({ hotspot, imageRef }: HotspotPinProps) {
-  const [open, setOpen] = useState(false);
-  const pinRef = useRef<HTMLDivElement>(null);
-  const product = hotspot.products[0];
-
+function PopupCard({
+  item,
+  onClose,
+}: {
+  item: Hotspot;
+  onClose: () => void;
+}) {
   return (
     <div
-      ref={pinRef}
-      className="absolute z-20"
-      style={{ top: hotspot.top, left: hotspot.left, transform: "translate(-50%, -50%)" }}
+      key={item.id}
+      className="absolute z-40 w-[min(86vw,20rem)]"
+      style={{ top: item.popupTop, left: item.popupLeft, transform: item.popupTransform }}
+      data-testid="hotspot-popup"
     >
-      <button
-        onClick={() => setOpen((v) => !v)}
-        className="relative flex items-center justify-center w-7 h-7 group"
-        data-testid={`hotspot-pin-${product.id}`}
-        aria-label={`View ${product.name}`}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.965, y: 14 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.965, y: 14 }}
+        transition={{ type: "spring", stiffness: 420, damping: 34, mass: 0.7 }}
+        className="rounded-[2px] bg-white px-4 py-4 text-black shadow-[0_20px_48px_rgba(0,0,0,0.14)]"
       >
-        <span className="absolute inset-0 rounded-full bg-white/30 animate-ping opacity-60 group-hover:opacity-80" />
-        <span className="relative flex items-center justify-center w-6 h-6 rounded-full bg-white border-2 border-[#1139F5] shadow-lg">
-          <span className="w-2 h-2 rounded-full bg-[#1139F5]" />
-        </span>
-      </button>
+        <div className="mb-3.5 flex items-start justify-between gap-2.5">
+        <div className="flex min-w-0 items-start gap-2.5">
+          <div className="h-12 w-12 flex-none overflow-hidden bg-gray-50">
+            <img src={item.image} alt={item.title} className="h-full w-full object-cover" />
+          </div>
+          <div className="min-w-0">
+            <div className="mb-1.5 flex gap-1">
+              <span className="h-2 w-2 rounded-sm bg-gray-800" />
+              <span className="h-2 w-2 rounded-sm bg-[#c7a85a]" />
+              <span className="h-2 w-2 rounded-sm border border-gray-300 bg-white" />
+            </div>
+            <h3 className="max-w-[14ch] text-[1.04rem] font-medium leading-[1.15]">{item.title}</h3>
+          </div>
+        </div>
+        <button type="button" onClick={onClose} className="rounded p-0.5 hover:bg-gray-100" aria-label="Đóng">
+          <X className="h-3.5 w-3.5 text-gray-500" />
+        </button>
+      </div>
 
-      <AnimatePresence>
-        {open && (
-          <ProductPopup
-            product={product}
-            onClose={() => setOpen(false)}
-            anchorRef={pinRef as React.RefObject<HTMLDivElement>}
-          />
-        )}
-      </AnimatePresence>
+      <div className="mb-3.5">
+        <h4 className="mb-1.5 text-[0.88rem] font-medium text-gray-900">Downloads</h4>
+        <div className="space-y-1">
+          {item.downloads.map((download) => (
+            <div key={download} className="flex items-center gap-1.5 text-[0.8rem] text-[#294cff]">
+              <Download className="h-3 w-3" />
+              <span>{download}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="mb-3.5 border-t border-gray-100 pt-3">
+        <p className="mb-1 text-[10px] uppercase tracking-[0.22em] text-emerald-600">Standard</p>
+        <p className="text-[0.82rem] leading-relaxed text-gray-500">{item.stock}</p>
+      </div>
+
+      <a href="#" className="mb-3.5 inline-flex items-center gap-1.5 text-[0.82rem] text-[#294cff]">
+        View product details <ChevronRight className="h-3 w-3" />
+      </a>
+
+      <div className="flex items-center gap-2">
+        <button className="flex flex-1 items-center justify-center gap-2 bg-[#294cff] px-3.5 py-3 text-[0.82rem] font-semibold text-white">
+          <span className="text-xs">⚙</span> Configure
+        </button>
+        <button className="flex h-10 w-10 items-center justify-center border border-gray-200 text-gray-600">
+          <Plus className="h-3.5 w-3.5" />
+        </button>
+        <button className="flex h-10 w-10 items-center justify-center border border-gray-200 text-gray-600">
+          <Heart className="h-3.5 w-3.5" />
+        </button>
+      </div>
+      </motion.div>
     </div>
   );
 }
 
-const imageHotspots = [
-  [hotspots[0]],
-  [hotspots[1]],
-  [hotspots[2]],
-  [hotspots[3]],
-  [hotspots[4]],
-];
-
-const imageRefs: React.RefObject<HTMLDivElement | null>[] = Array.from({ length: 5 }, () => ({ current: null }));
-
 export default function CollageSection() {
-  return (
-    <section className="py-32 px-6 md:px-12 bg-white" data-testid="collage-section">
-      <div className="max-w-[1400px] mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8 }}
-          className="mb-20 flex flex-col md:flex-row justify-between items-end gap-8"
-        >
-          <h2 className="text-4xl md:text-6xl font-semibold tracking-tight text-gray-900 max-w-[800px] leading-tight">
-            Changing how the world views lighting
-          </h2>
-          <Link
-            href="#"
-            className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider hover:opacity-70 transition-opacity pb-2 border-b-2 border-black"
-          >
-            View Projects <ArrowRight className="w-4 h-4" />
-          </Link>
-        </motion.div>
+  const [activeId, setActiveId] = useState<string | null>("downlight");
+  const sectionRef = useRef<HTMLElement>(null);
 
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:auto-rows-[300px]">
-          {[
-            { colSpan: "md:col-span-7 md:row-span-2", delay: 0.1, idx: 0 },
-            { colSpan: "md:col-span-5 md:row-span-1", delay: 0.2, idx: 1 },
-            { colSpan: "md:col-span-5 md:row-span-2", delay: 0.3, idx: 2 },
-            { colSpan: "md:col-span-3 md:row-span-1", delay: 0.4, idx: 3 },
-            { colSpan: "md:col-span-4 md:row-span-1", delay: 0.5, idx: 4 },
-          ].map(({ colSpan, delay, idx }) => (
+  const activeItem = hotspots.find((item) => item.id === activeId) ?? null;
+
+  useEffect(() => {
+    function onPointerDown(event: MouseEvent) {
+      if (!sectionRef.current) return;
+      if (!sectionRef.current.contains(event.target as Node)) {
+        setActiveId(null);
+      }
+    }
+
+    document.addEventListener("mousedown", onPointerDown);
+    return () => document.removeEventListener("mousedown", onPointerDown);
+  }, []);
+
+  return (
+    <section ref={sectionRef} className="relative overflow-hidden bg-white px-0 pb-16 pt-20 md:pt-24" data-testid="collage-section">
+      <div className="relative mx-auto max-w-[1600px]">
+        <div className="relative min-h-[clamp(980px,102vw,1420px)]">
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-120px" }}
+            transition={{ duration: 0.55 }}
+            className="pointer-events-none absolute left-1/2 top-[38%] z-10 w-[min(92vw,1320px)] -translate-x-1/2 -translate-y-1/2"
+          >
+            <h2 className="text-center text-[clamp(2.6rem,5vw,4.6rem)] font-semibold leading-[0.92] tracking-tight text-black">
+              <span className="underline decoration-[4px] underline-offset-[12px]">Changing</span> how the world views lighting
+            </h2>
+          </motion.div>
+
+          {hotspots.map((item) => (
             <motion.div
-              key={idx}
-              ref={imageRefs[idx] as React.RefObject<HTMLDivElement>}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay }}
-              className={`${colSpan} relative overflow-visible group cursor-pointer`}
-              data-testid={`collage-image-${idx}`}
+              key={item.id}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true, margin: "-180px" }}
+              transition={{ duration: 0.45 }}
+              className="absolute z-0"
+              style={{
+                top: item.artTop,
+                left: item.artLeft,
+                width: item.artWidth,
+                transform: item.artTransform,
+              }}
             >
-              <div className="w-full h-full overflow-hidden">
-                <img
-                  src={collageImages[idx]}
-                  alt={`Project ${idx + 1}`}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-              </div>
-              {imageHotspots[idx].map((hs, hi) => (
-                <HotspotPin key={hi} hotspot={hs} imageRef={imageRefs[idx]} />
-              ))}
+              <img src={item.image} alt={item.title} className="w-full object-contain" />
             </motion.div>
           ))}
+
+          {hotspots.map((item) => (
+            <HotspotPin
+              key={item.id}
+              item={item}
+              active={activeId === item.id}
+              onClick={() => setActiveId((prev) => (prev === item.id ? null : item.id))}
+            />
+          ))}
+
+          <AnimatePresence initial={false} mode="sync">
+            {activeItem && <PopupCard item={activeItem} onClose={() => setActiveId(null)} />}
+          </AnimatePresence>
         </div>
 
         <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="mt-8 text-xs text-gray-400 flex items-center gap-1.5"
+          transition={{ duration: 0.4, delay: 0.1 }}
+          className="mt-4 text-xs text-gray-400"
         >
-          <span className="w-4 h-4 rounded-full border-2 border-[#1139F5] flex items-center justify-center inline-flex">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#1139F5]" />
-          </span>
           Click the hotspot pins to explore products featured in each space
         </motion.p>
       </div>

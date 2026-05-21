@@ -1,48 +1,54 @@
 import { motion } from "framer-motion";
-import { Clock, Gem, Mic2, Leaf } from "lucide-react";
 
 export default function BrandPillars() {
   const pillars = [
     {
-      icon: <Clock className="w-8 h-8 stroke-1" />,
       title: "Saving you time",
-      desc: "Streamlined processes and tools designed for efficiency."
+      desc: "Our digital-first approach is designed to win you back the most important currency - time.",
     },
     {
-      icon: <Gem className="w-8 h-8 stroke-1" />,
       title: "Design, performance and value",
-      desc: "Balancing aesthetics with uncompromising engineering."
+      desc: "Our formula is simple and unwavering - design, performance and value without compromise.",
     },
     {
-      icon: <Mic2 className="w-8 h-8 stroke-1" />,
       title: "Sharing the good word of lighting",
-      desc: "Educating and inspiring the global design community."
+      desc: "We seek to change how society understands lighting by being an industry thought-leader.",
     },
     {
-      icon: <Leaf className="w-8 h-8 stroke-1" />,
-      title: "Shaping a sustainable future",
-      desc: "Committed to circular design and minimizing our footprint."
-    }
+      title: "Shaping a sustainable future for the built environment",
+      desc: "We are committed to improving our sustainable credentials while continuing to innovate and finesse our craft.",
+    },
   ];
 
   return (
-    <section className="py-24 px-6 md:px-12 bg-white" data-testid="brand-pillars">
-      <div className="max-w-[1400px] mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+    <section className="bg-white px-6 py-24 md:px-12 md:py-28" data-testid="brand-pillars">
+      <div className="mx-auto max-w-[1440px]">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.55 }}
+          className="mb-10 max-w-2xl"
+        >
+          <p className="mb-3 text-[10px] uppercase tracking-[0.24em] text-gray-400">Changing how the world views lighting</p>
+          <h2 className="text-3xl font-semibold tracking-tight text-gray-900 md:text-4xl">
+            The brand pillars behind the homepage story.
+          </h2>
+        </motion.div>
+
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-4">
           {pillars.map((pillar, i) => (
             <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
+              key={pillar.title}
+              initial={{ opacity: 0, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="flex flex-col items-start"
+              transition={{ duration: 0.45, delay: i * 0.08 }}
+              className="border-t border-gray-200 pt-6"
             >
-              <div className="mb-6 text-primary p-4 bg-gray-50 rounded-2xl">
-                {pillar.icon}
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">{pillar.title}</h3>
-              <p className="text-gray-600 font-light leading-relaxed">{pillar.desc}</p>
+              <p className="mb-4 text-[10px] uppercase tracking-[0.24em] text-gray-400">0{i + 1}</p>
+              <h3 className="max-w-[12ch] text-2xl font-semibold leading-tight text-gray-900">{pillar.title}</h3>
+              <p className="mt-4 text-sm leading-relaxed text-gray-500">{pillar.desc}</p>
             </motion.div>
           ))}
         </div>
