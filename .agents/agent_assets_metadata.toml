@@ -90,3 +90,111 @@ id = "tE_DNpVjYXKZqmYm2inWF"
 uri = "file://attached_assets/generated_images/luxury_hotel_lobby_with_a659.png"
 type = "image"
 title = "generated_image"
+
+[[generated]]
+id = "LR-0Y7cmTFavKg1hjOYGt"
+uri = "file://artifacts/unios/src/assets/project-hero.png"
+type = "image"
+title = "architectural interior lighting design"
+
+[[generated]]
+id = "vORU9vme5r8BI8ErnETZY"
+uri = "file://artifacts/unios/src/assets/project-1.png"
+type = "image"
+title = "architectural interior library"
+
+[[generated]]
+id = "pcR6MpOdedlw60Sp6V_A9"
+uri = "file://artifacts/unios/src/assets/project-2.png"
+type = "image"
+title = "hotel lobby interior"
+
+[[generated]]
+id = "oZO7S6okjVY32cU-vP4AZ"
+uri = "file://artifacts/unios/src/assets/story-featured.png"
+type = "image"
+title = "modern workspace lighting"
+
+[[generated]]
+id = "NFlvuOBMoY_7qmFzp9gqO"
+uri = "file://artifacts/unios/src/assets/story-1.png"
+type = "image"
+title = "architectural interior lighting"
+
+[[generated]]
+id = "8j3-bYRQX2xA3wMoPruep"
+uri = "file://artifacts/unios/src/assets/story-2.png"
+type = "image"
+title = "lighting product design"
+
+[[generated]]
+id = "teocREanP2Hxpnnk54zCm"
+uri = "file://artifacts/unios/src/assets/product-1.png"
+type = "image"
+title = "Pendant lighting product"
+
+[[generated]]
+id = "Z5MIwiHxcYtIz_gBXnPcg"
+uri = "file://artifacts/unios/src/assets/product-2.png"
+type = "image"
+title = "Downlight product"
+
+[[generated]]
+id = "C5snNkBtb9dP_aIra15NI"
+uri = "file://artifacts/unios/src/assets/product-3.png"
+type = "image"
+title = "Track light product"
+
+[[generated]]
+id = "JZcRa8Tddpo-dc0xxFzu7"
+uri = "file://artifacts/unios/src/assets/product-4.png"
+type = "image"
+title = "Linear lighting product"
+
+[[generated]]
+id = "1iE-CgWXGUikMLFCyAiVF"
+uri = "file://artifacts/unios/src/assets/product-5.png"
+type = "image"
+title = "Surface light product"
+
+[[generated]]
+id = "tTR6SA3PW75gVmquyLGw_"
+uri = "file://artifacts/unios/src/assets/product-6.png"
+type = "image"
+title = "Outdoor light product"
+
+[[generated]]
+id = "o3nz7lZReKIq-wne-fp6e"
+uri = "file://artifacts/unios/src/assets/headshot-1.png"
+type = "image"
+title = "professional corporate headshot"
+
+[[generated]]
+id = "Pm36b6bX-Gyh3QcFBB64h"
+uri = "file://artifacts/unios/src/assets/headshot-2.png"
+type = "image"
+title = "professional corporate headshot"
+
+[[generated]]
+id = "xdEDA0FSHJFYxm9UjORlG"
+uri = "file://artifacts/unios/src/assets/headshot-3.png"
+type = "image"
+title = "professional corporate headshot"
+
+[[generated]]
+id = "bvgy6-fpFtGGArjwfqs17"
+uri = "file://artifacts/unios/src/assets/culture-1.png"
+type = "image"
+title = "creative office workspace"
+
+[[generated]]
+id = "3W72Dlgwf_eaxhxuiuKey"
+uri = "file://artifacts/unios/src/assets/culture-2.png"
+type = "image"
+title = "creative office workspace"
+
+[[generated]]
+id = "TCdUjfgxzft2VxgqNA-3Y"
+uri = "file://artifacts/unios/src/assets/culture-3.png"
+type = "image"
+title = "creative office workspace"
