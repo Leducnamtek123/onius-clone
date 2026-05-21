@@ -1,0 +1,140 @@
+{
+  "colorScheme": "light",
+  "fonts": [
+    {
+      "family": "FFMark",
+      "role": "body"
+    }
+  ],
+  "colors": {
+    "primary": "#1139F5",
+    "secondary": "#BBC7E2",
+    "accent": "#1139F5",
+    "background": "#FFFFFF",
+    "textPrimary": "#4D4D4D",
+    "link": "#2E1F1F"
+  },
+  "typography": {
+    "fontFamilies": {
+      "primary": "FFMark",
+      "heading": "FFMark"
+    },
+    "fontStacks": {
+      "heading": [
+        "FFMark",
+        "sans-serif"
+      ],
+      "body": [
+        "FFMark",
+        "sans-serif"
+      ],
+      "paragraph": [
+        "FFMark",
+        "sans-serif"
+      ]
+    },
+    "fontSizes": {
+      "h1": "44px",
+      "h2": "28px",
+      "body": "14px"
+    }
+  },
+  "spacing": {
+    "baseUnit": 4,
+    "borderRadius": "4px"
+  },
+  "components": {
+    "input": {
+      "background": "transparent",
+      "textColor": "#FFFFFF",
+      "borderColor": "#FFFFFF",
+      "borderRadius": "2px",
+      "borderRadiusCorners": {
+        "topLeft": "2px",
+        "topRight": "2px",
+        "bottomRight": "2px",
+        "bottomLeft": "2px"
+      },
+      "shadow": "none"
+    },
+    "buttonPrimary": {
+      "background": "#FFFFFF",
+      "textColor": "#1139F5",
+      "borderRadius": "2px",
+      "borderRadiusCorners": {
+        "topLeft": "2px",
+        "topRight": "2px",
+        "bottomRight": "2px",
+        "bottomLeft": "2px"
+      },
+      "shadow": "none"
+    },
+    "buttonSecondary": {
+      "background": "#F7F7F7",
+      "textColor": "#4D4D4D",
+      "borderColor": "#E6E6E6",
+      "borderRadius": "2px",
+      "borderRadiusCorners": {
+        "topLeft": "2px",
+        "topRight": "2px",
+        "bottomRight": "2px",
+        "bottomLeft": "2px"
+      },
+      "shadow": "none"
+    }
+  },
+  "images": {
+    "favicon": "File saved at: attached_assets/favicon.png",
+    "ogImage": "/unios-meta.jpg",
+    "logoHref": "File saved at: attached_assets/logoHref.html"
+  },
+  "__llm_logo_reasoning": {
+    "selectedIndex": 0,
+    "reasoning": "Selected #0 because it is visible, located in the header, links to the homepage, and matches the brand name 'Unios'.",
+    "confidence": 0.95,
+    "source": "llm"
+  },
+  "__llm_button_reasoning": {
+    "primary": {
+      "index": 2,
+      "text": "Product images",
+      "reasoning": "Button #2 has a vibrant text color (#1139F5) that matches the primary brand color, making it stand out as a call-to-action for viewing product images."
+    },
+    "secondary": {
+      "index": 0,
+      "text": "Textured White/Metallic",
+      "reasoning": "Button #0 is from a different color group (#F7F7F7) and serves as a secondary option with less emphasis, suitable for a less critical action."
+    },
+    "confidence": 0.9
+  },
+  "personality": {
+    "tone": "professional",
+    "energy": "medium",
+    "targetAudience": "architects and designers"
+  },
+  "designSystem": {
+    "framework": "custom",
+    "componentLibrary": ""
+  },
+  "confidence": {
+    "buttons": 0.9,
+    "colors": 0.95,
+    "overall": 0.925
+  },
+  "__llm_metadata": {
+    "logoSelection": {
+      "llmCalled": true,
+      "llmSucceeded": true,
+      "finalSource": "llm",
+      "rawLogoSelection": {
+        "selectedLogoIndex": 0,
+        "selectedLogoReasoning": "Selected #0 because it is visible, located in the header, links to the homepage, and matches the brand name 'Unios'.",
+        "confidence": 0.95
+      }
+    },
+    "buttonClassification": {
+      "llmCalled": true,
+      "llmSucceeded": true
+    }
+  }
+}

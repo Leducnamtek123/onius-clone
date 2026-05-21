@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "Unios"
+version = "1.0.0"
+id = "artifacts/unios"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 22258
+
+[services.development]
+run = "pnpm --filter @workspace/unios run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/unios", "run", "build" ]
+publicDir = "artifacts/unios/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "22258"
+BASE_PATH = "/"

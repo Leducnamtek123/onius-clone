@@ -1,0 +1,92 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "ZnKL9W7DepzlyNl5jG_DV"
+uri = "file://artifacts/unios/src/assets/hero-1.png"
+type = "image"
+title = "LX Infinity pendant light"
+
+[[generated]]
+id = "XDsplmFXf2SsiR9khZXNH"
+uri = "file://artifacts/unios/src/assets/hero-2.png"
+type = "image"
+title = "ION R Mini compact downlight"
+
+[[generated]]
+id = "pvaHjxxYVyAMz4M-gXAMM"
+uri = "file://artifacts/unios/src/assets/hero-3.png"
+type = "image"
+title = "Kobe G2 track spotlight"
+
+[[generated]]
+id = "DNWBUxLNpkBshE7jmOydG"
+uri = "file://artifacts/unios/src/assets/hero-4.png"
+type = "image"
+title = "Pandia decorative pendant"
+
+[[generated]]
+id = "2-n40LcMR67bqoqKo_Lix"
+uri = "file://artifacts/unios/src/assets/hero-5.png"
+type = "image"
+title = "Inter Linear profile light"
+
+[[generated]]
+id = "nwY8-SGZ7dxRUyMX_KFS2"
+uri = "file://artifacts/unios/src/assets/hero-6.png"
+type = "image"
+title = "Akira G2 indirect luminaire"
+
+[[generated]]
+id = "msfPegJ3TFSIO2naRBmy9"
+uri = "file://artifacts/unios/src/assets/configurator.png"
+type = "image"
+title = "Configurator fixture render"
+
+[[generated]]
+id = "eYYFyGHPtrS9uRAc7rpNd"
+uri = "file://artifacts/unios/src/assets/community-1.png"
+type = "image"
+title = "Lighting design studio interior"
+
+[[generated]]
+id = "NKnz2nIoWr7Lmg1hAKOgR"
+uri = "file://artifacts/unios/src/assets/community-2.png"
+type = "image"
+title = "Modern showroom interior"
+
+[[generated]]
+id = "ONcfjyGnaW2cJooYe3Cdc"
+uri = "file://artifacts/unios/src/assets/community-3.png"
+type = "image"
+title = "Global distribution center facade"
+
+[[generated]]
+id = "apNW0gvtjhpQdVZgDJBOZ"
+uri = "file://attached_assets/generated_images/modern_library_interior_with_d6c7.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "5Ga3Oi0G3l6tDjfdq8yRk"
+uri = "file://attached_assets/generated_images/high_end_restaurant_interior_016f.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "h537H6KNGDos0z-EqZga_"
+uri = "file://attached_assets/generated_images/luxurious_architectural_interior_with_6320.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "Y9YHPHTvF0SUGdqPA6U1p"
+uri = "file://attached_assets/generated_images/contemporary_art_gallery_with_0635.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "tE_DNpVjYXKZqmYm2inWF"
+uri = "file://attached_assets/generated_images/luxury_hotel_lobby_with_a659.png"
+type = "image"
+title = "generated_image"
