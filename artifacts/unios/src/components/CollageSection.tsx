@@ -30,14 +30,14 @@ const hotspots: Hotspot[] = [
   {
     id: "pendant",
     image: hero4,
-    artWidth: "26rem",
-    artTop: "10%",
-    artLeft: "-4%",
-    artTransform: "translate(-8%, -8%) rotate(7deg)",
-    pinTop: "14%",
-    pinLeft: "7%",
+    artWidth: "24rem",
+    artTop: "8%",
+    artLeft: "7%",
+    artTransform: "translate(-50%, -8%) rotate(7deg)",
+    pinTop: "13%",
+    pinLeft: "13%",
     popupTop: "17%",
-    popupLeft: "9%",
+    popupLeft: "15%",
     popupTransform: "translate(0, 0)",
     title: "Pandia Glass Collection",
     downloads: ["Hình sản phẩm", "Hướng dẫn lắp đặt", "Đối tượng Sketchup", "Thư viện Revit", "2D CAD", "Tất cả tệp IES"],
@@ -47,30 +47,46 @@ const hotspots: Hotspot[] = [
   {
     id: "downlight",
     image: hero2,
-    artWidth: "21rem",
-    artTop: "9%",
-    artLeft: "30%",
+    artWidth: "19rem",
+    artTop: "8%",
+    artLeft: "32%",
     artTransform: "translate(-50%, -4%)",
-    pinTop: "15%",
+    pinTop: "14%",
     pinLeft: "36%",
     popupTop: "18%",
-    popupLeft: "34%",
+    popupLeft: "37%",
     popupTransform: "translate(-42%, 0)",
     title: "Titanium G2 Downlight",
     downloads: ["Hình sản phẩm", "Hướng dẫn lắp đặt", "Đối tượng Sketchup", "Thư viện Revit", "2D CAD", "Tất cả tệp IES"],
     stock: "This item is generally stocked, please check with your Unios distributor.",
   },
   {
+    id: "blade",
+    image: hero5,
+    artWidth: "17rem",
+    artTop: "8%",
+    artLeft: "58%",
+    artTransform: "translate(-50%, -6%) rotate(-4deg)",
+    pinTop: "14%",
+    pinLeft: "59%",
+    popupTop: "18%",
+    popupLeft: "61%",
+    popupTransform: "translate(-50%, 0)",
+    title: "ION R Blade",
+    downloads: ["Hình sản phẩm", "Hướng dẫn lắp đặt", "Đối tượng Sketchup", "Thư viện Revit", "2D CAD", "Tất cả tệp IES"],
+    stock: "A slim architectural profile for precise linear illumination across hospitality, residential, and workplace settings.",
+  },
+  {
     id: "curve",
     image: hero6,
-    artWidth: "20rem",
-    artTop: "9%",
-    artLeft: "86%",
+    artWidth: "18rem",
+    artTop: "7%",
+    artLeft: "84%",
     artTransform: "translate(-16%, -10%) rotate(9deg)",
-    pinTop: "17%",
-    pinLeft: "89%",
+    pinTop: "16%",
+    pinLeft: "87%",
     popupTop: "18%",
-    popupLeft: "79%",
+    popupLeft: "82%",
     popupTransform: "translate(-100%, 0)",
     title: "Inter Linear Collection",
     downloads: ["Hình sản phẩm", "Hướng dẫn lắp đặt", "Đối tượng Sketchup", "Thư viện Revit", "2D CAD", "Tất cả tệp IES"],
@@ -79,14 +95,14 @@ const hotspots: Hotspot[] = [
   {
     id: "track",
     image: hero1,
-    artWidth: "27rem",
+    artWidth: "25rem",
     artTop: "61%",
-    artLeft: "-1%",
-    artTransform: "translate(-6%, 0%) rotate(-1deg)",
+    artLeft: "11%",
+    artTransform: "translate(-50%, 0%) rotate(-1deg)",
     pinTop: "64%",
-    pinLeft: "10%",
+    pinLeft: "13%",
     popupTop: "59%",
-    popupLeft: "9%",
+    popupLeft: "15%",
     popupTransform: "translate(0, -100%)",
     title: "LX Infinity",
     downloads: ["Hình sản phẩm", "Hướng dẫn lắp đặt", "Đối tượng Sketchup", "Thư viện Revit", "2D CAD", "Tất cả tệp IES"],
@@ -97,7 +113,7 @@ const hotspots: Hotspot[] = [
     image: hero3,
     artWidth: "18rem",
     artTop: "67%",
-    artLeft: "39%",
+    artLeft: "38%",
     artTransform: "translate(-50%, 0%) rotate(4deg)",
     pinTop: "78%",
     pinLeft: "38%",
@@ -112,13 +128,13 @@ const hotspots: Hotspot[] = [
     id: "mini",
     image: hero5,
     artWidth: "16rem",
-    artTop: "61%",
-    artLeft: "56%",
+    artTop: "62%",
+    artLeft: "61%",
     artTransform: "translate(-46%, 0%) rotate(-2deg)",
-    pinTop: "69%",
-    pinLeft: "55%",
+    pinTop: "70%",
+    pinLeft: "60%",
     popupTop: "69%",
-    popupLeft: "54%",
+    popupLeft: "60%",
     popupTransform: "translate(-50%, -100%)",
     title: "ION R Mini",
     downloads: ["Hình sản phẩm", "Hướng dẫn lắp đặt", "Đối tượng Sketchup", "Thư viện Revit", "2D CAD", "Tất cả tệp IES"],
@@ -128,13 +144,13 @@ const hotspots: Hotspot[] = [
     id: "grid",
     image: hero6,
     artWidth: "19rem",
-    artTop: "69%",
-    artLeft: "84%",
-    artTransform: "translate(-34%, 0%)",
+    artTop: "66%",
+    artLeft: "85%",
+    artTransform: "translate(-50%, 0%)",
     pinTop: "79%",
-    pinLeft: "89%",
+    pinLeft: "85%",
     popupTop: "69%",
-    popupLeft: "79%",
+    popupLeft: "81%",
     popupTransform: "translate(-100%, -100%)",
     title: "Akira G2",
     downloads: ["Hình sản phẩm", "Hướng dẫn lắp đặt", "Đối tượng Sketchup", "Thư viện Revit", "2D CAD", "Tất cả tệp IES"],
@@ -158,10 +174,16 @@ function HotspotPin({
       className="group absolute z-20 flex h-6 w-6 -translate-x-1/2 -translate-y-1/2 items-center justify-center"
       style={{ top: item.pinTop, left: item.pinLeft }}
       aria-label={item.title}
+      aria-pressed={active}
       data-testid={`hotspot-${item.id}`}
     >
-      <span className="absolute inset-0 rounded-full border-[1.5px] border-[#2d4cff] bg-white/90 transition-transform duration-200 group-hover:scale-110 group-active:scale-95" />
-      <span className="relative h-1.5 w-1.5 rounded-full bg-[#2d4cff]" />
+      <span
+        className={[
+          "absolute inset-0 rounded-full border-[1.5px] transition-all duration-200 group-hover:scale-110 group-active:scale-95",
+          active ? "border-[#2447ff] bg-[#2447ff] shadow-[0_0_0_4px_rgba(36,71,255,0.14)]" : "border-[#2d4cff] bg-white/90",
+        ].join(" ")}
+      />
+      <span className={["relative h-1.5 w-1.5 rounded-full transition-colors duration-200", active ? "bg-white" : "bg-[#2d4cff]"].join(" ")} />
       {active && <span className="absolute inset-0 rounded-full border border-[#2d4cff]/25 animate-ping" />}
     </button>
   );
@@ -245,7 +267,7 @@ function PopupCard({
 }
 
 export default function CollageSection() {
-  const [activeId, setActiveId] = useState<string | null>("downlight");
+  const [activeId, setActiveId] = useState<string | null>(null);
   const sectionRef = useRef<HTMLElement>(null);
 
   const activeItem = hotspots.find((item) => item.id === activeId) ?? null;

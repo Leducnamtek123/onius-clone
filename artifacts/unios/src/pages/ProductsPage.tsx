@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { Link } from "wouter";
 import {
   ArrowLeftRight,
   ChevronDown,
@@ -67,12 +68,16 @@ function FilterChip({ label, active = false }: { label: string; active?: boolean
 
 function ProductCard({ product }: { product: Product }) {
   return (
-    <article className="flex min-h-[405px] flex-col rounded-[2px] bg-[#f7f7f7] px-6 pb-5 pt-5 text-center">
+    <Link
+      href="/products/ion-r-surface-mounted-downlight"
+      className="group flex min-h-[405px] flex-col rounded-[2px] bg-[#f7f7f7] px-6 pb-5 pt-5 text-center transition-transform duration-200 hover:-translate-y-1"
+      aria-label={`Xem chi tiết ${product.name}`}
+    >
       <div className="relative flex flex-1 items-center justify-center overflow-hidden">
         <img
           src={product.image}
           alt={product.name}
-          className="max-h-[250px] w-full object-contain object-center"
+          className="max-h-[250px] w-full object-contain object-center transition-transform duration-300 group-hover:scale-[1.03]"
         />
       </div>
 
@@ -87,7 +92,7 @@ function ProductCard({ product }: { product: Product }) {
           ...
         </div>
       </div>
-    </article>
+    </Link>
   );
 }
 

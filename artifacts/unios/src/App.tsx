@@ -7,6 +7,7 @@ import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
 import New2026 from "@/pages/New2026";
 import ProductsPage from "@/pages/ProductsPage";
+import ProductDetailPage from "@/pages/ProductDetailPage";
 import SearchPage from "@/pages/SearchPage";
 import ComparePage from "@/pages/ComparePage";
 import ImagesPage from "@/pages/ImagesPage";
@@ -26,29 +27,39 @@ import PrivacyPolicyPage from "@/pages/PrivacyPolicyPage";
 
 const queryClient = new QueryClient();
 
+const routes = [
+  { path: "/", component: Home },
+  { path: "/2026", component: New2026 },
+  { path: "/new", component: New2026 },
+  { path: "/products/:slug", component: ProductDetailPage },
+  { path: "/products", component: ProductsPage },
+  { path: "/search", component: SearchPage },
+  { path: "/compare", component: ComparePage },
+  { path: "/images", component: ImagesPage },
+  { path: "/projects", component: ProjectsPage },
+  { path: "/stories", component: StoriesPage },
+  { path: "/stories/all", component: StoriesAllPage },
+  { path: "/resources", component: ResourcesPage },
+  { path: "/brand/about", component: BrandAboutPage },
+  { path: "/brand/our-culture", component: BrandCulturePage },
+  { path: "/brand/sustainability", component: BrandSustainabilityPage },
+  { path: "/brand/why-unios", component: BrandWhyUniosPage },
+  { path: "/contact", component: ContactPage },
+  { path: "/where-to-buy", component: WhereToBuyPage },
+  { path: "/toolbox", component: ToolboxPage },
+  { path: "/applications/:type", component: ApplicationsPage },
+  { path: "/privacy-policy", component: PrivacyPolicyPage },
+] as const;
+
 function Router() {
   return (
     <Switch>
-      <Route path="/" component={Home} />
-      <Route path="/2026" component={New2026} />
-      <Route path="/new" component={New2026} />
-      <Route path="/products" component={ProductsPage} />
-      <Route path="/search" component={SearchPage} />
-      <Route path="/compare" component={ComparePage} />
-      <Route path="/images" component={ImagesPage} />
-      <Route path="/projects" component={ProjectsPage} />
-      <Route path="/stories" component={StoriesPage} />
-      <Route path="/stories/all" component={StoriesAllPage} />
-      <Route path="/resources" component={ResourcesPage} />
-      <Route path="/brand/about" component={BrandAboutPage} />
-      <Route path="/brand/our-culture" component={BrandCulturePage} />
-      <Route path="/brand/sustainability" component={BrandSustainabilityPage} />
-      <Route path="/brand/why-unios" component={BrandWhyUniosPage} />
-      <Route path="/contact" component={ContactPage} />
-      <Route path="/where-to-buy" component={WhereToBuyPage} />
-      <Route path="/toolbox" component={ToolboxPage} />
-      <Route path="/applications/:type" component={ApplicationsPage} />
-      <Route path="/privacy-policy" component={PrivacyPolicyPage} />
+      {routes.map((route) => (
+        <Route key={route.path} path={route.path} component={route.component} />
+      ))}
+      {routes.map((route) => (
+        <Route key={`/vi${route.path}`} path={`/vi${route.path === "/" ? "" : route.path}`} component={route.component} />
+      ))}
       <Route component={NotFound} />
     </Switch>
   );

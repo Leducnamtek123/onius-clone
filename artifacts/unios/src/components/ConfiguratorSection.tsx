@@ -4,9 +4,9 @@ import { useRef } from "react";
 import collage3 from "@/assets/collage-3.png";
 
 const storyLines = [
-  "Định cấu hình và quản lý dự án chiếu sáng chưa bao giờ dễ dàng đến thế.",
-  "Chọn thông số, hoàn thiện và tài nguyên sản phẩm theo đúng tiến trình thiết kế.",
-  "Lưu vào Toolbox để cộng tác, xuất dữ liệu và tiếp tục dự án khi cần.",
+  "Định cấu hình dự án",
+  "và quản lý chiếu sáng",
+  "dễ dàng hơn bao giờ hết.",
 ];
 
 function FallingLine({
@@ -19,16 +19,16 @@ function FallingLine({
   progress: MotionValue<number>;
 }) {
   const start = index * 0.24;
-  const middle = start + 0.14;
-  const end = start + 0.42;
-  const y = useTransform(progress, [start, end], [-180, 220]);
-  const opacity = useTransform(progress, [start, middle, end - 0.08, end], [0, 1, 1, 0]);
-  const scale = useTransform(progress, [start, middle, end], [0.98, 1, 0.98]);
+  const middle = start + 0.12;
+  const end = start + 0.34;
+  const y = useTransform(progress, [start, middle, end], [-64, 0, 0]);
+  const opacity = useTransform(progress, [start, middle, end], [0, 1, 1]);
+  const scale = useTransform(progress, [start, middle, end], [0.985, 1, 1]);
 
   return (
     <motion.h2
       style={{ y, opacity, scale }}
-      className="absolute left-1/2 top-1/2 max-w-[27ch] -translate-x-1/2 -translate-y-1/2 text-[2rem] font-semibold leading-[1.08] tracking-normal text-white md:text-[3rem] lg:text-[3.35rem]"
+      className="max-w-[24ch] text-balance text-[2rem] font-semibold leading-[0.98] tracking-[-0.02em] text-white md:max-w-[28ch] md:text-[3rem] lg:text-[3.35rem]"
     >
       {text}
     </motion.h2>
@@ -76,10 +76,12 @@ export default function ConfiguratorSection() {
           />
         </div>
 
-        <div className="pointer-events-none relative z-10 h-full px-6 text-left md:px-20 lg:px-28">
-          {storyLines.map((line, index) => (
-            <FallingLine key={line} text={line} index={index} progress={scrollYProgress} />
-          ))}
+        <div className="pointer-events-none relative z-10 flex h-full items-center px-6 md:px-20 lg:px-28">
+          <div className="flex max-w-4xl flex-col items-start gap-3 md:gap-4 lg:gap-5">
+            {storyLines.map((line, index) => (
+              <FallingLine key={line} text={line} index={index} progress={scrollYProgress} />
+            ))}
+          </div>
         </div>
       </div>
     </section>

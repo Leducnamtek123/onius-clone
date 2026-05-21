@@ -2,6 +2,33 @@
 > @workspace/unios@0.0.0 dev C:\Users\leduc\Documents\onius-clone\artifacts\unios
 > vite --config vite.config.ts --host 0.0.0.0
 
-C:\Users\leduc\Documents\onius-clone\artifacts\unios:
- ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL  @workspace/unios@0.0.0 dev: `vite --config vite.config.ts --host 0.0.0.0`
-Exit status 1
+
+  [32m[1mVITE[22m v7.3.3[39m  [2mready in [0m[1m256[22m[2m[0m ms[22m
+
+  [32m➜[39m  [1mLocal[22m:   [36mhttp://localhost:[1m8080[22m/[39m
+  [32m➜[39m  [1mNetwork[22m: [36mhttp://100.116.222.10:[1m8080[22m/[39m
+  [32m➜[39m  [1mNetwork[22m: [36mhttp://172.17.80.1:[1m8080[22m/[39m
+  [32m➜[39m  [1mNetwork[22m: [36mhttp://172.23.224.1:[1m8080[22m/[39m
+  [32m➜[39m  [1mNetwork[22m: [36mhttp://192.168.1.42:[1m8080[22m/[39m
+  [32m➜[39m  [1mNetwork[22m: [36mhttp://192.168.1.27:[1m8080[22m/[39m
+[2m[32m  ➜[39m[22m[2m  press [22m[1mh + enter[22m[2m to show help[22m
+[2m1:59:37 AM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/components/CollageSection.tsx[22m
+[2m2:03:55 AM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/components/ConfiguratorSection.tsx[22m
+[2m2:04:39 AM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/components/Header.tsx[22m
+[2m2:04:51 AM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/ProductsPage.tsx, /src/index.css[22m
+[2m2:05:33 AM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/components/ConfiguratorSection.tsx[22m
+[2m2:06:13 AM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/components/Header.tsx[22m
+[2m2:06:26 AM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.tsx, /src/index.css[22m
+[2m2:06:31 AM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/components/Header.tsx, /src/App.tsx[22m
+[2m2:06:35 AM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/components/HeroSlider.tsx[22m
+[2m2:08:28 AM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/components/Header.tsx[22m
+[2m2:08:48 AM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/components/Header.tsx[22m
+[2m2:08:52 AM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/components/HeroSlider.tsx[22m
+[2m2:09:32 AM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/components/Header.tsx[22m
+[2m2:29:10 AM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.tsx, /src/index.css[22m
+[2m2:30:17 AM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/components/Header.tsx[22m
+[2m2:30:53 AM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/components/Header.tsx[22m
+[2m2:40:05 AM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/components/Header.tsx[22m
+[2m2:46:11 AM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/components/Header.tsx[22m
+[2m2:47:41 AM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/components/CollageSection.tsx[22m
+[2m2:51:55 AM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/components/CollageSection.tsx[22m
