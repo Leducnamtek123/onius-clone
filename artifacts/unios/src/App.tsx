@@ -1,7 +1,11 @@
 import { Switch, Route, Router as WouterRouter } from "wouter";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
+import { useLocation } from "wouter";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { getLocaleFromPath } from "@/i18n";
 
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
@@ -51,6 +55,21 @@ const routes = [
   { path: "/privacy-policy", component: PrivacyPolicyPage },
 ] as const;
 
+function LocaleSync() {
+  const [location] = useLocation();
+  const { i18n } = useTranslation();
+
+  useEffect(() => {
+    const locale = getLocaleFromPath(location);
+    if (i18n.language !== locale) {
+      void i18n.changeLanguage(locale);
+    }
+    document.documentElement.lang = locale;
+  }, [i18n, location]);
+
+  return null;
+}
+
 function Router() {
   return (
     <Switch>
@@ -70,6 +89,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
+          <LocaleSync />
           <Router />
         </WouterRouter>
         <Toaster />

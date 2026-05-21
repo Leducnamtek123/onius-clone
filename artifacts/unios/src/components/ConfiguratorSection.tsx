@@ -1,13 +1,10 @@
 import { motion, MotionValue, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import { useTranslation } from "react-i18next";
 
 import collage3 from "@/assets/collage-3.png";
 
-const storyLines = [
-  "Định cấu hình dự án",
-  "và quản lý chiếu sáng",
-  "dễ dàng hơn bao giờ hết.",
-];
+const storyLineKeys = ["home.configurator.line1", "home.configurator.line2", "home.configurator.line3"];
 
 function FallingLine({
   text,
@@ -36,6 +33,7 @@ function FallingLine({
 }
 
 export default function ConfiguratorSection() {
+  const { t } = useTranslation();
   const sectionRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -78,8 +76,8 @@ export default function ConfiguratorSection() {
 
         <div className="pointer-events-none relative z-10 flex h-full items-center px-6 md:px-20 lg:px-28">
           <div className="flex max-w-4xl flex-col items-start gap-3 md:gap-4 lg:gap-5">
-            {storyLines.map((line, index) => (
-              <FallingLine key={line} text={line} index={index} progress={scrollYProgress} />
+            {storyLineKeys.map((key, index) => (
+              <FallingLine key={key} text={t(key)} index={index} progress={scrollYProgress} />
             ))}
           </div>
         </div>

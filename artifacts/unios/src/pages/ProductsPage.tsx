@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Link } from "wouter";
 import {
   ArrowLeftRight,
@@ -11,6 +12,7 @@ import {
 } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { useLocaleRouting } from "@/hooks/use-locale-routing";
 
 import product1 from "@/assets/product-1.png";
 import product2 from "@/assets/product-2.png";
@@ -66,12 +68,14 @@ function FilterChip({ label, active = false }: { label: string; active?: boolean
   );
 }
 
-function ProductCard({ product }: { product: Product }) {
+function ProductCard({ product, detailsHref }: { product: Product; detailsHref: string }) {
+  const { t } = useTranslation();
+
   return (
     <Link
-      href="/products/ion-r-surface-mounted-downlight"
+      href={detailsHref}
       className="group flex min-h-[405px] flex-col rounded-[2px] bg-[#f7f7f7] px-6 pb-5 pt-5 text-center transition-transform duration-200 hover:-translate-y-1"
-      aria-label={`Xem chi tiết ${product.name}`}
+      aria-label={t("products.detailsLabel", { name: product.name })}
     >
       <div className="relative flex flex-1 items-center justify-center overflow-hidden">
         <img
@@ -98,6 +102,8 @@ function ProductCard({ product }: { product: Product }) {
 
 export default function ProductsPage() {
   const [showFilters, setShowFilters] = useState(true);
+  const { t } = useTranslation();
+  const { withLocale } = useLocaleRouting();
 
   const pages = useMemo(() => [1, 2, 3, 4, 5], []);
 
@@ -117,28 +123,28 @@ export default function ProductsPage() {
                 <span className="flex h-11 w-11 items-center justify-center rounded-full border border-gray-200 text-[#1139F5]">
                   <ChevronLeft className="h-5 w-5" />
                 </span>
-                <span>{showFilters ? "Ẩn bộ lọc" : "Hiện bộ lọc"}</span>
+                <span>{showFilters ? t("products.hideFilters") : t("products.showFilters")}</span>
               </button>
 
               <div className={`${showFilters ? "block" : "hidden"} space-y-9 lg:block`}>
                 <section>
-                  <h2 className="mb-3 text-[15px] font-medium text-black">Category</h2>
+                  <h2 className="mb-3 text-[15px] font-medium text-black">{t("products.category")}</h2>
                   <button
                     type="button"
                     className="flex h-14 w-full items-center justify-between border border-gray-200 px-4 text-[15px] text-black"
                   >
-                    <span>Bất kỳ</span>
+                    <span>{t("common.any")}</span>
                     <ChevronDown className="h-4 w-4 text-gray-400" />
                   </button>
                 </section>
 
                 <section>
-                  <h2 className="mb-4 text-[15px] font-medium text-black">Brightness(lumen output)</h2>
+                  <h2 className="mb-4 text-[15px] font-medium text-black">{t("products.brightness")}</h2>
                   <div className="relative pt-5">
                     <div className="h-[3px] rounded-full bg-[#1139F5]" />
                     <div className="absolute left-0 top-[14px] h-5 w-5 rounded-full border border-gray-200 bg-white shadow-sm" />
                     <div className="absolute right-0 top-[14px] h-5 w-5 rounded-full border border-gray-200 bg-white shadow-sm" />
-                    <div className="mt-4 text-[13px] text-[#1139F5]">Any</div>
+                    <div className="mt-4 text-[13px] text-[#1139F5]">{t("common.any")}</div>
                     <div className="absolute left-[-2px] top-[11px] text-gray-400">
                       <span className="text-[10px]">✦</span>
                     </div>
@@ -149,7 +155,7 @@ export default function ProductsPage() {
                 </section>
 
                 <section>
-                  <h2 className="mb-4 text-[15px] font-medium text-black">Finish</h2>
+                  <h2 className="mb-4 text-[15px] font-medium text-black">{t("products.finish")}</h2>
                   <div className="space-y-3">
                     {finishOptions.map((item, index) => (
                       <label key={item} className="flex items-center gap-3 text-[14px] text-gray-500">
@@ -161,25 +167,25 @@ export default function ProductsPage() {
                     ))}
                     <button type="button" className="flex items-center gap-2 pt-1 text-[15px] text-[#1139F5]">
                       <ChevronDown className="h-4 w-4" />
-                      <span>More finishes</span>
+                      <span>{t("products.moreFinishes")}</span>
                     </button>
                   </div>
                 </section>
 
                 <section>
-                  <h2 className="mb-3 text-[15px] font-medium text-black">Colour Temperature</h2>
+                  <h2 className="mb-3 text-[15px] font-medium text-black">{t("products.colourTemperature")}</h2>
                   <button
                     type="button"
                     className="flex h-14 w-full items-center justify-between border border-gray-200 px-4 text-[15px] text-black"
                   >
-                    <span>Bất kỳ</span>
+                    <span>{t("common.any")}</span>
                     <ChevronDown className="h-4 w-4 text-gray-400" />
                   </button>
                 </section>
 
                 <button type="button" className="flex items-center gap-2 text-[15px] text-[#1139F5]">
                   <ChevronDown className="h-4 w-4" />
-                  <span>Thêm bộ lọc</span>
+                  <span>{t("products.moreFilters")}</span>
                 </button>
               </div>
             </aside>
@@ -188,9 +194,9 @@ export default function ProductsPage() {
               <div className="flex flex-col gap-7 border-b border-gray-100 pb-6 lg:flex-row lg:items-end lg:justify-between">
                 <div className="flex-1 min-w-0">
                   <h1 className="max-w-[620px] whitespace-nowrap text-[3.15rem] font-semibold leading-none tracking-[-0.06em] text-black md:text-[3.75rem]">
-                    Tất cả sản phẩm
+                    {t("products.allProducts")}
                   </h1>
-                  <p className="mt-8 text-[16px] text-[#4d4d4d]">1 - 24 of 117 Sản phẩm</p>
+                  <p className="mt-8 text-[16px] text-[#4d4d4d]">{t("products.count")}</p>
                 </div>
 
                 <div className="flex shrink-0 flex-wrap items-center gap-6 text-[15px]">
@@ -202,17 +208,17 @@ export default function ProductsPage() {
                   <div className="flex items-center gap-6">
                     <div className="flex items-center gap-5">
                       <button type="button" className="border-b border-black pb-1 font-semibold text-black">
-                        Sản phẩm
+                        {t("products.productTab")}
                       </button>
                       <button type="button" className="font-semibold text-gray-300">
-                        Tại chỗ
+                        {t("products.onsiteTab")}
                       </button>
                     </div>
 
                     <div className="flex items-center gap-2 text-[#4d4d4d]">
-                      <span>Sắp xếp theo:</span>
+                      <span>{t("products.sortBy")}</span>
                       <button type="button" className="flex items-center gap-2 font-semibold text-black">
-                        <span>Đề xuất</span>
+                        <span>{t("products.recommended")}</span>
                         <ChevronDown className="h-4 w-4" />
                       </button>
                     </div>
@@ -222,7 +228,7 @@ export default function ProductsPage() {
                       className="flex h-16 items-center gap-3 border border-gray-200 px-8 text-[15px] font-medium text-[#1139F5]"
                     >
                       <ArrowLeftRight className="h-4 w-4" />
-                      <span>So sánh</span>
+                      <span>{t("products.compare")}</span>
                     </button>
                   </div>
                 </div>
@@ -230,7 +236,7 @@ export default function ProductsPage() {
 
               <div className="mt-8 grid grid-cols-1 gap-7 sm:grid-cols-2 xl:grid-cols-3">
                 {products.map((product) => (
-                  <ProductCard key={product.id} product={product} />
+                  <ProductCard key={product.id} product={product} detailsHref={withLocale("/products/ion-r-surface-mounted-downlight")} />
                 ))}
               </div>
 

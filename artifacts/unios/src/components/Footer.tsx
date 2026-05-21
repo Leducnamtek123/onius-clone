@@ -1,52 +1,45 @@
 import { ArrowRight } from "lucide-react";
 import { FaFacebookF } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 import { Link } from "wouter";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
+import { useLocaleRouting } from "@/hooks/use-locale-routing";
 
-const footerColumns = [
+const baseFooterColumns = [
+  { titleKey: "nav.products", itemType: "static", items: ["Accessories", "Ceiling Recessed", "Ceiling Surface", "Ceiling Suspended", "Drivers"] },
   {
-    title: "Products",
-    items: ["Accessories", "Ceiling Recessed", "Ceiling Surface", "Ceiling Suspended", "Drivers"],
-  },
-  {
-    title: "Stories",
+    titleKey: "nav.stories",
+    itemType: "static",
     items: ["Sustainability and Wellness", "Technology and Futurism", "Architecture and Design", "Diversity and Inclusion", "Standards and Guidelines"],
   },
-  {
-    title: "Brand",
-    items: ["Vì sao nên lựa chọn Unios", "Giới thiệu về Unios", "Sustainability", "Văn hóa doanh nghiệp"],
-  },
-  {
-    title: "Projects",
-    items: ["Thể thao và giải trí", "Ngành công nghiệp", "Khu dân cư phức hợp", "Ngành dịch vụ", "Khách sạn"],
-  },
-  {
-    title: "Resources",
-    items: ["Tài liệu hướng dẫn", "Sách", "Catalogue", "Tạp chí", "Khác"],
-  },
-];
+  { titleKey: "nav.brand", itemType: "i18n", itemKey: "footer.brandItems" },
+  { titleKey: "nav.projects", itemType: "i18n", itemKey: "footer.projectItems" },
+  { titleKey: "nav.resources", itemType: "i18n", itemKey: "footer.resourceItems" },
+] as const;
 
 export default function Footer() {
+  const { t } = useTranslation();
+  const { withLocale } = useLocaleRouting();
+  const quickLinks = t("footer.quickLinks", { returnObjects: true }) as string[];
+  const fields = [t("footer.firstName"), t("footer.lastName"), t("footer.email")];
+  const footerColumns = baseFooterColumns.map((column) => ({
+    title: t(column.titleKey),
+    items: column.itemType === "static" ? [...column.items] : (t(column.itemKey, { returnObjects: true }) as string[]),
+  }));
+
   return (
     <footer className="bg-black px-6 pb-8 pt-16 text-white md:px-12" data-testid="footer">
       <div className="mx-auto max-w-[1440px]">
         <div className="grid grid-cols-1 gap-14 lg:grid-cols-[320px_minmax(0,1fr)]">
           <div>
-            <Link href="/" className="inline-flex items-center">
+            <Link href={withLocale("/")} className="inline-flex items-center">
               <span className="text-[3rem] font-bold tracking-[-0.06em] leading-none">unios.</span>
             </Link>
 
             <div className="mt-14">
               <div className="flex items-center gap-2 text-sm text-white/70">
-                <span>Ngôn ngữ:</span>
-                <svg viewBox="0 0 24 16" className="h-3 w-4" aria-hidden="true">
-                  <rect width="24" height="16" rx="1.5" fill="#da251d" />
-                  <path
-                    d="M12 3.4l1.4 2.9 3.2.5-2.3 2.2.5 3.1-2.8-1.5-2.8 1.5.5-3.1-2.3-2.2 3.2-.5L12 3.4z"
-                    fill="#ffdf00"
-                  />
-                </svg>
-                <span className="font-semibold text-white">Tiếng Việt</span>
-                <span>▾</span>
+                <span>{t("common.language")}</span>
+                <LanguageSwitcher variant="dark" />
               </div>
 
               <div className="mt-5 flex items-center gap-4 text-white/70">
@@ -60,18 +53,10 @@ export default function Footer() {
               </div>
 
               <div className="mt-12">
-                <h3 className="text-xl font-semibold">Liên hệ với chúng tôi</h3>
+                <h3 className="text-xl font-semibold">{t("footer.contactTitle")}</h3>
                 <div className="mt-6 space-y-2 text-sm leading-6 text-white/55">
-                  <p>
-                    Hà Nội: E2, Chelsea Residence, P. Trần Kim Xuyến,
-                    <br />
-                    Phường Yên Hoà, Hà Nội 100000
-                  </p>
-                  <p>
-                    Hồ Chí Minh: B2 Tháp Canary, Đảo Kim Cương,
-                    <br />
-                    Phường Bình Trưng, Thành phố Hồ Chí Minh 700000
-                  </p>
+                  <p>{t("footer.hanoiAddress").split("\n").map((line, index) => <span key={line}>{index > 0 && <br />}{line}</span>)}</p>
+                  <p>{t("footer.hcmAddress").split("\n").map((line, index) => <span key={line}>{index > 0 && <br />}{line}</span>)}</p>
                 </div>
                 <div className="mt-6 space-y-1 text-sm font-semibold text-white">
                   <p>+84 901435485</p>
@@ -79,7 +64,7 @@ export default function Footer() {
                 </div>
 
                 <div className="mt-8 space-y-3 text-sm font-semibold">
-                  {["Vị trí cửa hàng", "Phòng trưng bày", "Warranty"].map((item) => (
+                  {quickLinks.map((item) => (
                     <a key={item} href="#" className="flex items-center gap-2 transition-opacity hover:opacity-80">
                       <span>{item}</span>
                       <ArrowRight className="h-4 w-4" />
@@ -88,7 +73,7 @@ export default function Footer() {
                 </div>
 
                 <p className="mt-6 max-w-[220px] text-sm italic leading-6 text-white/45">
-                  Chỉ có thể xem phòng trưng bày theo lịch hẹn
+                  {t("footer.appointmentOnly")}
                 </p>
               </div>
             </div>
@@ -96,17 +81,17 @@ export default function Footer() {
 
           <div>
             <div className="max-w-[720px]">
-              <h2 className="text-[1.75rem] font-semibold tracking-[-0.03em] md:text-[2rem]">Nhận thông tin mới nhất</h2>
+              <h2 className="text-[1.75rem] font-semibold tracking-[-0.03em] md:text-[2rem]">{t("footer.newsletterTitle")}</h2>
               <p className="mt-3 text-[15px] leading-7 text-white/55">
-                Đăng ký nhận bản tin của chúng tôi để xem tin tức mới nhất, nội dung cập nhật sản phẩm, dữ liệu nghiên cứu điển hình về dự án và nhiều nội dung hấp dẫn khác.
+                {t("footer.newsletterCopy")}{" "}
                 <a href="#" className="font-semibold text-white underline decoration-white/40 underline-offset-2">
-                  Chính sách quyền riêng tư
+                  {t("footer.privacyPolicy")}
                 </a>
                 .
               </p>
 
               <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-[1fr_1fr_1fr_auto]">
-                {["Tên", "Họ", "Email"].map((label) => (
+                {fields.map((label) => (
                   <div key={label}>
                     <label className="mb-2 block text-sm font-semibold text-white">{label}</label>
                     <input
@@ -116,13 +101,13 @@ export default function Footer() {
                   </div>
                 ))}
                 <button className="mt-7 h-12 bg-white px-6 text-sm font-medium text-black transition-colors hover:bg-white/90 md:mt-7">
-                  Gửi
+                  {t("footer.submit")}
                 </button>
               </div>
 
               <label className="mt-4 flex items-center gap-3 text-sm text-white/70">
                 <input type="checkbox" className="h-4 w-4 border-white/30 bg-transparent" />
-                <span>Tôi đồng ý với của Unios điều khoản và điều kiện</span>
+                <span>{t("footer.consent")}</span>
               </label>
             </div>
 
@@ -147,10 +132,10 @@ export default function Footer() {
               <p>© 2023 Unios Pty Ltd</p>
               <div className="flex flex-wrap gap-5">
                 <a href="#" className="transition-colors hover:text-white">
-                  Chính sách quyền riêng tư
+                  {t("footer.privacyPolicy")}
                 </a>
                 <a href="#" className="transition-colors hover:text-white">
-                  Áp dụng Điều khoản dịch vụ
+                  {t("footer.terms")}
                 </a>
               </div>
             </div>

@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { ChevronRight, Search } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -12,26 +13,26 @@ import collage2 from "@/assets/collage-2.png";
 const featuredProjects = [
   {
     id: "built-head-office",
-    title: "Di sản của tương lai",
+    titleKey: "projects.featured.builtHeadOffice",
     location: "Built Head Office Sydney, Australia",
     image: project1,
   },
   {
     id: "prestige-homes",
-    title: "Ngôi nhà của sự thoải mái, giản dị và thanh bình",
+    titleKey: "projects.featured.prestigeHomes",
     location: "Prestige Homes Perth, Australia",
     image: project2,
   },
   {
     id: "karrinyup-shopping-centre",
-    title: "Chiếu sáng khu phức hợp đa năng hàng đầu của thành phố Perth",
+    titleKey: "projects.featured.karrinyupShoppingCentre",
     location: "Karrinyup Shopping Centre Perth, Australia",
     image: collage1,
   },
   {
     id: "owston-hill-villa",
-    title: "Sự kết hợp tinh tế giữa kiến trúc, kỹ thuật chế tác và nội thất",
-    location: "Biệt thự Owston Hill Perth, Australia",
+    titleKey: "projects.featured.owstonHillVilla",
+    locationKey: "projects.featured.owstonHillLocation",
     image: collage2,
   },
 ];
@@ -93,6 +94,7 @@ function SelectLike({ label, value }: { label: string; value: string }) {
 }
 
 export default function ProjectsPage() {
+  const { t } = useTranslation();
   const [activeFilter, setActiveFilter] = useState("All");
   const [productCategory, setProductCategory] = useState("Any");
   const [product, setProduct] = useState("Any");
@@ -109,15 +111,17 @@ export default function ProjectsPage() {
                 <div className="overflow-hidden bg-[#efeae6]">
                   <img
                     src={project.image}
-                    alt={project.title}
+                    alt={t(project.titleKey)}
                     className="h-[440px] w-full object-cover transition-transform duration-700 group-hover:scale-[1.02] md:h-[510px]"
                   />
                 </div>
                 <div className="pt-4 md:pt-5">
                   <h2 className="max-w-[24ch] text-[1.6rem] font-medium leading-[1.05] tracking-[-0.03em] text-[#2e1f1f] md:text-[2rem]">
-                    {project.title}
+                    {t(project.titleKey)}
                   </h2>
-                  <p className="mt-2 text-sm text-[#5f5148] md:text-[1rem]">{project.location}</p>
+                  <p className="mt-2 text-sm text-[#5f5148] md:text-[1rem]">
+                    {"locationKey" in project && project.locationKey ? t(project.locationKey) : project.location}
+                  </p>
                 </div>
               </div>
             </article>
@@ -129,9 +133,9 @@ export default function ProjectsPage() {
         <div className="mx-auto max-w-[1440px] px-5 py-14 md:px-8 lg:px-12">
           <div className="flex flex-col gap-6 border-b border-[#ece5df] pb-8 lg:flex-row lg:items-end lg:justify-between">
             <div>
-              <p className="text-[11px] uppercase tracking-[0.22em] text-[#7a6960]">Search listing</p>
+              <p className="text-[11px] uppercase tracking-[0.22em] text-[#7a6960]">{t("projects.searchListing")}</p>
               <h2 className="mt-3 text-[2.4rem] font-medium tracking-[-0.04em] text-[#2e1f1f] md:text-[3.2rem]">
-                # Dự án
+                {t("projects.title")}
               </h2>
             </div>
 
@@ -146,8 +150,8 @@ export default function ProjectsPage() {
                   />
                 </label>
                 <div className="flex h-12 items-center gap-3 border border-[#d7cfc7] px-4 text-sm text-[#2e1f1f]">
-                  <span className="uppercase tracking-[0.16em] text-[11px] text-[#7a6960]">Sort By:</span>
-                  <span>Recently added</span>
+                  <span className="uppercase tracking-[0.16em] text-[11px] text-[#7a6960]">{t("projects.sortBy")}</span>
+                  <span>{t("projects.recentlyAdded")}</span>
                 </div>
               </div>
               <div className="flex flex-wrap gap-2">
@@ -161,17 +165,17 @@ export default function ProjectsPage() {
           </div>
 
           <div className="mt-8 grid gap-4 lg:grid-cols-2">
-            <SelectLike label="Product Category" value={productCategory} />
-            <SelectLike label="Product" value={product} />
+            <SelectLike label={t("projects.productCategory")} value={productCategory === "Any" ? t("common.any") : productCategory} />
+            <SelectLike label={t("projects.product")} value={product === "Any" ? t("common.any") : product} />
           </div>
 
           <div className="mt-10 rounded-none border border-[#ece5df] bg-[#faf8f6] px-6 py-10 md:px-10 md:py-12">
             <div className="max-w-3xl">
               <p className="text-[11px] uppercase tracking-[0.22em] text-[#7a6960]">
-                Something went wrong. Please try again or contact us if the issue persists.
+                {t("projects.errorEyebrow")}
               </p>
               <p className="mt-4 text-2xl font-medium tracking-[-0.03em] text-[#2e1f1f] md:text-3xl">
-                There are no projects with the selected filters.
+                {t("projects.empty")}
               </p>
               <button
                 type="button"
@@ -182,7 +186,7 @@ export default function ProjectsPage() {
                 }}
                 className="mt-8 inline-flex items-center gap-2 border border-[#2e1f1f] bg-[#2e1f1f] px-6 py-3 text-[11px] uppercase tracking-[0.18em] text-white transition-colors hover:bg-white hover:text-[#2e1f1f]"
               >
-                Reset and try again
+                {t("projects.reset")}
                 <ChevronRight className="h-4 w-4" />
               </button>
             </div>

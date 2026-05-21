@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronRight, Download, Heart, Plus, X } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 import hero1 from "@/assets/hero-1.png";
 import hero2 from "@/assets/hero-2.png";
@@ -24,6 +25,7 @@ type Hotspot = {
   title: string;
   downloads: string[];
   stock: string;
+  stockKey?: string;
 };
 
 const hotspots: Hotspot[] = [
@@ -40,9 +42,9 @@ const hotspots: Hotspot[] = [
     popupLeft: "15%",
     popupTransform: "translate(0, 0)",
     title: "Pandia Glass Collection",
-    downloads: ["Hình sản phẩm", "Hướng dẫn lắp đặt", "Đối tượng Sketchup", "Thư viện Revit", "2D CAD", "Tất cả tệp IES"],
-    stock:
-      "Tự hào giới thiệu Bộ sưu tập Pandia Glass - tuyệt tác mới nhất, thể hiện hành trình của Unios và Chris Connell trong việc khám phá sự tối giản trong thủy tinh, ánh sáng và thiết kế đậm chất Úc.",
+    downloads: [],
+    stock: "Introducing the Pandia Glass Collection, the latest expression of Unios and Chris Connell's exploration of minimal glass, light and Australian design.",
+    stockKey: "home.collage.pandiaStock",
   },
   {
     id: "downlight",
@@ -57,7 +59,7 @@ const hotspots: Hotspot[] = [
     popupLeft: "37%",
     popupTransform: "translate(-42%, 0)",
     title: "Titanium G2 Downlight",
-    downloads: ["Hình sản phẩm", "Hướng dẫn lắp đặt", "Đối tượng Sketchup", "Thư viện Revit", "2D CAD", "Tất cả tệp IES"],
+    downloads: [],
     stock: "This item is generally stocked, please check with your Unios distributor.",
   },
   {
@@ -73,7 +75,7 @@ const hotspots: Hotspot[] = [
     popupLeft: "61%",
     popupTransform: "translate(-50%, 0)",
     title: "ION R Blade",
-    downloads: ["Hình sản phẩm", "Hướng dẫn lắp đặt", "Đối tượng Sketchup", "Thư viện Revit", "2D CAD", "Tất cả tệp IES"],
+    downloads: [],
     stock: "A slim architectural profile for precise linear illumination across hospitality, residential, and workplace settings.",
   },
   {
@@ -89,7 +91,7 @@ const hotspots: Hotspot[] = [
     popupLeft: "82%",
     popupTransform: "translate(-100%, 0)",
     title: "Inter Linear Collection",
-    downloads: ["Hình sản phẩm", "Hướng dẫn lắp đặt", "Đối tượng Sketchup", "Thư viện Revit", "2D CAD", "Tất cả tệp IES"],
+    downloads: [],
     stock: "Combining remarkable colour accuracy, consistency, and shorter lead times, the Inter offers 12 profiles for a wide range of applications.",
   },
   {
@@ -105,7 +107,7 @@ const hotspots: Hotspot[] = [
     popupLeft: "15%",
     popupTransform: "translate(0, -100%)",
     title: "LX Infinity",
-    downloads: ["Hình sản phẩm", "Hướng dẫn lắp đặt", "Đối tượng Sketchup", "Thư viện Revit", "2D CAD", "Tất cả tệp IES"],
+    downloads: [],
     stock: "Discover the latest evolution of our LX Collection, now enhanced with CRI90+ and expanded mounting options.",
   },
   {
@@ -121,7 +123,7 @@ const hotspots: Hotspot[] = [
     popupLeft: "39%",
     popupTransform: "translate(-50%, -100%)",
     title: "Kobe G2",
-    downloads: ["Hình sản phẩm", "Hướng dẫn lắp đặt", "Đối tượng Sketchup", "Thư viện Revit", "2D CAD", "Tất cả tệp IES"],
+    downloads: [],
     stock: "Half the bulk, all the power - explore the new version of Kobe that provides better optical control and comfort.",
   },
   {
@@ -137,7 +139,7 @@ const hotspots: Hotspot[] = [
     popupLeft: "60%",
     popupTransform: "translate(-50%, -100%)",
     title: "ION R Mini",
-    downloads: ["Hình sản phẩm", "Hướng dẫn lắp đặt", "Đối tượng Sketchup", "Thư viện Revit", "2D CAD", "Tất cả tệp IES"],
+    downloads: [],
     stock: "The update that completes the Unios signature range. Compact in form, uncompromising in potential.",
   },
   {
@@ -153,7 +155,7 @@ const hotspots: Hotspot[] = [
     popupLeft: "81%",
     popupTransform: "translate(-100%, -100%)",
     title: "Akira G2",
-    downloads: ["Hình sản phẩm", "Hướng dẫn lắp đặt", "Đối tượng Sketchup", "Thư viện Revit", "2D CAD", "Tất cả tệp IES"],
+    downloads: [],
     stock: "Akira G2 brings wellness into general illumination with indirect light, truer colour, and exceptional glare control.",
   },
 ];
@@ -196,6 +198,18 @@ function PopupCard({
   item: Hotspot;
   onClose: () => void;
 }) {
+  const { t } = useTranslation();
+  const downloads = t("home.downloads", { returnObjects: true }) as Record<string, string>;
+  const downloadItems = [
+    downloads.productImages,
+    downloads.installationGuide,
+    downloads.sketchupObject,
+    downloads.revitLibrary,
+    downloads.cad,
+    downloads.ies,
+  ];
+  const stock = item.stockKey ? t(item.stockKey) : item.stock;
+
   return (
     <div
       key={item.id}
@@ -224,15 +238,15 @@ function PopupCard({
             <h3 className="max-w-[14ch] text-[1.04rem] font-medium leading-[1.15]">{item.title}</h3>
           </div>
         </div>
-        <button type="button" onClick={onClose} className="rounded p-0.5 hover:bg-gray-100" aria-label="Đóng">
+        <button type="button" onClick={onClose} className="rounded p-0.5 hover:bg-gray-100" aria-label={t("common.close")}>
           <X className="h-3.5 w-3.5 text-gray-500" />
         </button>
       </div>
 
       <div className="mb-3.5">
-        <h4 className="mb-1.5 text-[0.88rem] font-medium text-gray-900">Downloads</h4>
+        <h4 className="mb-1.5 text-[0.88rem] font-medium text-gray-900">{t("home.collage.downloads")}</h4>
         <div className="space-y-1">
-          {item.downloads.map((download) => (
+          {downloadItems.map((download) => (
             <div key={download} className="flex items-center gap-1.5 text-[0.8rem] text-[#294cff]">
               <Download className="h-3 w-3" />
               <span>{download}</span>
@@ -242,17 +256,17 @@ function PopupCard({
       </div>
 
       <div className="mb-3.5 border-t border-gray-100 pt-3">
-        <p className="mb-1 text-[10px] uppercase tracking-[0.22em] text-emerald-600">Standard</p>
-        <p className="text-[0.82rem] leading-relaxed text-gray-500">{item.stock}</p>
+        <p className="mb-1 text-[10px] uppercase tracking-[0.22em] text-emerald-600">{t("home.collage.standard")}</p>
+        <p className="text-[0.82rem] leading-relaxed text-gray-500">{stock}</p>
       </div>
 
       <a href="#" className="mb-3.5 inline-flex items-center gap-1.5 text-[0.82rem] text-[#294cff]">
-        View product details <ChevronRight className="h-3 w-3" />
+        {t("home.collage.viewProductDetails")} <ChevronRight className="h-3 w-3" />
       </a>
 
       <div className="flex items-center gap-2">
         <button className="flex flex-1 items-center justify-center gap-2 bg-[#294cff] px-3.5 py-3 text-[0.82rem] font-semibold text-white">
-          <span className="text-xs">⚙</span> Configure
+          <span className="text-xs">⚙</span> {t("home.collage.configure")}
         </button>
         <button className="flex h-10 w-10 items-center justify-center border border-gray-200 text-gray-600">
           <Plus className="h-3.5 w-3.5" />
@@ -267,6 +281,7 @@ function PopupCard({
 }
 
 export default function CollageSection() {
+  const { t } = useTranslation();
   const [activeId, setActiveId] = useState<string | null>(null);
   const sectionRef = useRef<HTMLElement>(null);
 
@@ -296,7 +311,7 @@ export default function CollageSection() {
             className="pointer-events-none absolute left-1/2 top-[44%] z-10 w-[min(92vw,1320px)] -translate-x-1/2 -translate-y-1/2 md:top-[48%]"
           >
             <h2 className="text-center text-[clamp(2.6rem,5vw,4.6rem)] font-semibold leading-[0.92] tracking-tight text-black">
-              <span className="underline decoration-[4px] underline-offset-[12px]">Changing</span> how the world views lighting
+              <span className="underline decoration-[4px] underline-offset-[12px]">{t("home.collage.changing")}</span> {t("home.collage.heading")}
             </h2>
           </motion.div>
 

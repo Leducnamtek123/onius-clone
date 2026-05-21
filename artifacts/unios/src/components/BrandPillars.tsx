@@ -1,6 +1,7 @@
 import { motion, MotionValue, useScroll, useTransform } from "framer-motion";
 import { BookOpen } from "lucide-react";
 import { useRef } from "react";
+import { useTranslation } from "react-i18next";
 
 import project1 from "@/assets/project-1.png";
 import project2 from "@/assets/project-2.png";
@@ -13,6 +14,7 @@ import collage2 from "@/assets/collage-2.png";
 type StoryCard = {
   category: string;
   title: string;
+  titleKey?: string;
   author: string;
   image: string;
   className: string;
@@ -33,7 +35,8 @@ const storyCards: StoryCard[] = [
   },
   {
     category: "Story > Technology and Futures",
-    title: "Ứng dụng AI trong điều khiển...",
+    title: "AI applications in lighting control...",
+    titleKey: "home.brandPillars.aiControl",
     author: "Stewart Langdown",
     image: story1,
     className: "left-[19%] top-[25%] w-[18rem]",
@@ -52,7 +55,8 @@ const storyCards: StoryCard[] = [
   },
   {
     category: "Project",
-    title: "Tri ân vẻ đẹp kiến trúc nguyên...",
+    title: "Honouring original architectural beauty...",
+    titleKey: "home.brandPillars.architecturalBeauty",
     author: "Unios Projects",
     image: project1,
     className: "left-[41%] bottom-[2%] w-[15.5rem]",
@@ -62,7 +66,8 @@ const storyCards: StoryCard[] = [
   },
   {
     category: "Story > Architecture and Design",
-    title: "Giải pháp kiến trúc và chiếu...",
+    title: "Architectural lighting solutions...",
+    titleKey: "home.brandPillars.architecturalSolutions",
     author: "Unios Editorial",
     image: collage1,
     className: "right-[21%] bottom-[-11%] w-[20rem]",
@@ -81,7 +86,8 @@ const storyCards: StoryCard[] = [
   },
   {
     category: "Project",
-    title: "Khi ánh sáng không còn chỉ l...",
+    title: "When light is more than illumination...",
+    titleKey: "home.brandPillars.lightBeyondFunction",
     author: "Unios Projects",
     image: story2,
     className: "right-[-1%] bottom-[8%] w-[16rem]",
@@ -94,9 +100,11 @@ const storyCards: StoryCard[] = [
 function FloatingStoryCard({
   card,
   progress,
+  title,
 }: {
   card: StoryCard;
   progress: MotionValue<number>;
+  title: string;
 }) {
   const y = useTransform(progress, [0, 1], [card.travel, -card.travel]);
   const scale = useTransform(progress, [0, 0.5, 1], [0.94, 1, 0.96]);
@@ -112,7 +120,7 @@ function FloatingStoryCard({
       <div className="p-7">
         <p className="mb-5 truncate text-sm font-medium text-black/70">{card.category}</p>
         <h3 className="min-h-[5.5rem] text-3xl font-semibold leading-[0.98]">
-          {card.title}
+          {title}
         </h3>
         <div className="mt-7 flex items-center justify-between">
           <span className="text-sm text-black/70">{card.author}</span>
@@ -131,6 +139,7 @@ function FloatingStoryCard({
 }
 
 export default function BrandPillars() {
+  const { t } = useTranslation();
   const sectionRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -152,7 +161,7 @@ export default function BrandPillars() {
 
         <div className="relative mx-auto h-full max-w-[1720px]">
           {storyCards.map((card) => (
-            <FloatingStoryCard key={card.title} card={card} progress={scrollYProgress} />
+            <FloatingStoryCard key={card.title} card={card} progress={scrollYProgress} title={card.titleKey ? t(card.titleKey) : card.title} />
           ))}
 
           <motion.div
@@ -160,7 +169,7 @@ export default function BrandPillars() {
             className="pointer-events-none absolute inset-0 z-20 flex items-center justify-center px-6 text-center"
           >
             <h2 className="max-w-[18ch] text-[3.4rem] font-semibold leading-[0.98] text-white md:text-[4.6rem]">
-              Câu chuyện, quan điểm và tri thức
+              {t("home.brandPillars.heading")}
             </h2>
           </motion.div>
         </div>
