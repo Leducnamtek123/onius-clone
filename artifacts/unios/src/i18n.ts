@@ -3,9 +3,9 @@ import { initReactI18next } from "react-i18next";
 
 export type Locale = "en" | "vi";
 
-export const localeOptions: Array<{ code: Locale; label: string; shortLabel: string }> = [
-  { code: "en", label: "English", shortLabel: "EN" },
-  { code: "vi", label: "Tiếng Việt", shortLabel: "VI" },
+export const localeOptions: Array<{ code: Locale; label: string; shortLabel: string; flagSrc: string }> = [
+  { code: "en", label: "English", shortLabel: "EN", flagSrc: "/flags/gb.svg" },
+  { code: "vi", label: "Tiếng Việt", shortLabel: "VI", flagSrc: "/flags/vn.svg" },
 ];
 
 export function getLocaleFromPath(path: string): Locale {

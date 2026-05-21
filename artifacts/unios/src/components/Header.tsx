@@ -515,7 +515,7 @@ export default function Header() {
         <div className="grid h-8 w-full grid-cols-[auto_minmax(0,1fr)] items-center px-6 md:px-12 text-[10px] font-medium tracking-[0.02em]">
           <div className="flex items-center gap-2">
             <span className={mutedTextColor}>{tr("common.language")}</span>
-            <LanguageSwitcher variant={scrolled || !isDarkHero ? "light" : "dark"} compact />
+            <LanguageSwitcher variant={scrolled || !isDarkHero ? "light" : "dark"} />
           </div>
 
           <div className="flex items-center justify-end gap-4">
