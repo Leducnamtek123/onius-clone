@@ -43,7 +43,7 @@ const hotspots: Hotspot[] = [
     popupTransform: "translate(0, 0)",
     title: "Pandia Glass Collection",
     downloads: [],
-    stock: "Introducing the Pandia Glass Collection, the latest expression of Unios and Chris Connell's exploration of minimal glass, light and Australian design.",
+    stock: "Introducing the Pandia Glass Collection, the latest expression of Cosmos and Chris Connell's exploration of minimal glass, light and Australian design.",
     stockKey: "home.collage.pandiaStock",
   },
   {
@@ -60,7 +60,7 @@ const hotspots: Hotspot[] = [
     popupTransform: "translate(-42%, 0)",
     title: "Titanium G2 Downlight",
     downloads: [],
-    stock: "This item is generally stocked, please check with your Unios distributor.",
+    stock: "This item is generally stocked, please check with your Cosmos distributor.",
   },
   {
     id: "blade",
@@ -140,7 +140,7 @@ const hotspots: Hotspot[] = [
     popupTransform: "translate(-50%, -100%)",
     title: "ION R Mini",
     downloads: [],
-    stock: "The update that completes the Unios signature range. Compact in form, uncompromising in potential.",
+    stock: "The update that completes the Cosmos signature range. Compact in form, uncompromising in potential.",
   },
   {
     id: "grid",

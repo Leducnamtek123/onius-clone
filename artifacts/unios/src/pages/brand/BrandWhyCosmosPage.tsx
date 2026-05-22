@@ -20,7 +20,7 @@ const reasons = [
   {
     num: "03",
     title: "Trusted by Architects",
-    text: "Some of the world's most demanding design practices rely on Unios. We provide the tools, the data, and the support necessary to execute complex lighting strategies effortlessly.",
+    text: "Some of the world's most demanding design practices rely on Cosmos. We provide the tools, the data, and the support necessary to execute complex lighting strategies effortlessly.",
     img: hero1,
   },
   {
@@ -32,12 +32,12 @@ const reasons = [
   {
     num: "05",
     title: "Sustainable Future",
-    text: "We are actively reducing our carbon footprint, eliminating waste, and designing for the circular economy. Choosing Unios means specifying a product built for tomorrow.",
+    text: "We are actively reducing our carbon footprint, eliminating waste, and designing for the circular economy. Choosing Cosmos means specifying a product built for tomorrow.",
     img: hero1,
   }
 ];
 
-export default function BrandWhyUniosPage() {
+export default function BrandWhyCosmosPage() {
   return (
     <div className="min-h-screen bg-white">
       <Header />
@@ -49,7 +49,7 @@ export default function BrandWhyUniosPage() {
             animate={{ opacity: 1, scale: 1 }}
             className="text-6xl md:text-8xl font-semibold tracking-tight"
           >
-            Why Unios?
+            Why Cosmos?
           </motion.h1>
         </div>
       </section>

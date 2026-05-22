@@ -20,9 +20,9 @@ import hero6Loop from "@/assets/hero-6-loop.mp4";
 const slides = [
   {
     eyebrow: "Recently viewed",
-    title: "Unios Toolbox",
+    title: "Cosmos Toolbox",
     description:
-      "With Unios Toolbox, you can create, collaborate and manage your luminaire schedules in no time.",
+      "With Cosmos Toolbox, you can create, collaborate and manage your luminaire schedules in no time.",
     image: hero1,
     bullets: [
       "Generate and manage luminaire schedules",
@@ -53,7 +53,7 @@ const slides = [
     eyebrow: "Featured",
     title: "ION R Mini",
     description:
-      "The update that completes the Unios signature range. Compact in form, uncompromising in potential - explore all that the ION R has to offer.",
+      "The update that completes the Cosmos signature range. Compact in form, uncompromising in potential - explore all that the ION R has to offer.",
     image: hero3,
     leftBg: "linear-gradient(180deg, #0b1414 0%, #091212 100%)",
     rightBg: "#103337",

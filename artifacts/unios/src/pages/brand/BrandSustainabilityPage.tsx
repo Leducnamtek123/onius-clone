@@ -100,7 +100,7 @@ export default function BrandSustainabilityPage() {
             The lighting industry has a profound impact on global energy consumption. As a leading manufacturer, we recognize our responsibility to drive change.
           </p>
           <p>
-            By 2030, Unios aims to become a fully carbon-neutral organization. This involves an end-to-end audit of our supply chain, removing single-use plastics, and shifting all our facilities to renewable energy sources.
+            By 2030, Cosmos aims to become a fully carbon-neutral organization. This involves an end-to-end audit of our supply chain, removing single-use plastics, and shifting all our facilities to renewable energy sources.
           </p>
           <p>
             Furthermore, we are designing our products with the circular economy in mind. End-of-life recycling programs are currently being piloted across Australia, with plans for global rollout by 2027.

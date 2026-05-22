@@ -33,7 +33,7 @@ const newProducts = [
     category: "RECESSED DOWNLIGHT",
     image: hero2,
     badge: "NEW",
-    description: "Compact in form, uncompromising in potential. The ION R Mini completes the Unios signature range with precision optics.",
+    description: "Compact in form, uncompromising in potential. The ION R Mini completes the Cosmos signature range with precision optics.",
     specs: ["90mm Aperture", "35° Beam", "IP54 Rated"],
     isNew: true,
   },
@@ -202,7 +202,7 @@ export default function New2026() {
             >
               <div className="flex items-center gap-3 mb-6">
                 <span className="text-[10px] font-bold tracking-widest uppercase bg-[#1139F5] px-2.5 py-1">NEW</span>
-                <span className="text-[10px] text-white/50 uppercase tracking-widest">Unios Collection</span>
+                <span className="text-[10px] text-white/50 uppercase tracking-widest">Cosmos Collection</span>
               </div>
               <h1 className="text-6xl md:text-8xl font-semibold tracking-tight leading-none mb-6">
                 2026

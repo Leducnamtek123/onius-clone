@@ -14,7 +14,7 @@ export default function CommunitySection() {
     {
       image: comm2,
       title: "Find an office",
-      desc: "Visit a showroom and meet the Unios team across the APAC region.",
+      desc: "Visit a showroom and meet the Cosmos team across the APAC region.",
     },
     {
       image: comm3,

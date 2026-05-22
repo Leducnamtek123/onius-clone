@@ -22,7 +22,7 @@ import ResourcesPage from "@/pages/ResourcesPage";
 import BrandAboutPage from "@/pages/brand/BrandAboutPage";
 import BrandCulturePage from "@/pages/brand/BrandCulturePage";
 import BrandSustainabilityPage from "@/pages/brand/BrandSustainabilityPage";
-import BrandWhyUniosPage from "@/pages/brand/BrandWhyUniosPage";
+import BrandWhyCosmosPage from "@/pages/brand/BrandWhyCosmosPage";
 import ContactPage from "@/pages/ContactPage";
 import WhereToBuyPage from "@/pages/WhereToBuyPage";
 import ToolboxPage from "@/pages/ToolboxPage";
@@ -47,7 +47,7 @@ const routes = [
   { path: "/brand/about", component: BrandAboutPage },
   { path: "/brand/our-culture", component: BrandCulturePage },
   { path: "/brand/sustainability", component: BrandSustainabilityPage },
-  { path: "/brand/why-unios", component: BrandWhyUniosPage },
+  { path: "/brand/why-cosmos", component: BrandWhyCosmosPage },
   { path: "/contact", component: ContactPage },
   { path: "/where-to-buy", component: WhereToBuyPage },
   { path: "/toolbox", component: ToolboxPage },

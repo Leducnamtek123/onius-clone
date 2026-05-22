@@ -85,7 +85,7 @@ export default function ApplicationsPage() {
                     <p className="text-gray-600 text-sm">Prolonged exposure requires exceptional glare control to prevent fatigue.</p>
                   </div>
                   <div>
-                    <h4 className="font-semibold mb-2">Unios Solution: Darklight Optics</h4>
+                    <h4 className="font-semibold mb-2">Cosmos Solution: Darklight Optics</h4>
                     <p className="text-gray-600 text-sm">Products engineered with &lt;19 UGR and deep recessed sources for ultimate visual comfort.</p>
                   </div>
                 </div>

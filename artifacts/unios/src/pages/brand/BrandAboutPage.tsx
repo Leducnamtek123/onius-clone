@@ -36,7 +36,7 @@ export default function BrandAboutPage() {
             animate={{ opacity: 1, y: 0 }}
             className="text-5xl md:text-7xl font-semibold mb-6 tracking-tight"
           >
-            About Unios
+            About Cosmos
           </motion.h1>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}

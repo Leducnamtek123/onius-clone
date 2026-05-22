@@ -66,7 +66,7 @@ export default function BrandCulturePage() {
 
       <section className="py-24 bg-gray-50">
         <div className="max-w-[1400px] mx-auto px-6 md:px-12">
-          <h2 className="text-3xl font-semibold mb-12 text-center">Life at Unios</h2>
+          <h2 className="text-3xl font-semibold mb-12 text-center">Life at Cosmos</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <img src={culture1} alt="Office culture" className="w-full h-[400px] object-cover" />
             <img src={culture2} alt="Team collaboration" className="w-full h-[400px] object-cover md:mt-8" />
@@ -83,7 +83,7 @@ export default function BrandCulturePage() {
             viewport={{ once: true }}
           >
             <p className="text-2xl md:text-3xl font-light italic mb-8">
-              "The best part about working at Unios is the relentless pursuit of perfection. Everyone here cares deeply about the end result."
+              "The best part about working at Cosmos is the relentless pursuit of perfection. Everyone here cares deeply about the end result."
             </p>
             <p className="font-semibold uppercase tracking-wider text-sm text-gray-500">
               — Mark Davies, Lead Engineer

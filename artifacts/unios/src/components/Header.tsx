@@ -18,8 +18,8 @@ import headshot2 from "@/assets/headshot-2.png";
 import headshot3 from "@/assets/headshot-3.png";
 
 const brandSubnav = [
-  { label: "Why Unios", href: "/brand/why-unios" },
-  { label: "About Unios", href: "/brand/about" },
+  { label: "Why Cosmos", href: "/brand/why-cosmos" },
+  { label: "About Cosmos", href: "/brand/about" },
   { label: "Sustainability", href: "/brand/sustainability" },
   { label: "Our Culture", href: "/brand/our-culture" },
 ];
@@ -214,7 +214,7 @@ function MegaMenuPanel({
             <div className="flex items-start justify-between gap-6">
               <div>
                 <MenuPanelTitle>{labels.featured}</MenuPanelTitle>
-                <MenuImageCard image={projectHero} title={isVi ? "Unios Melbourne Experience Centre" : "Unios Melbourne Experience Centre"} subtitle={isVi ? "Experience lighting through the vibrance of local design and artistry" : "Experience lighting through the vibrance of local design and artistry"} href={withLocale("/projects")} />
+                <MenuImageCard image={projectHero} title={isVi ? "Cosmos Melbourne Experience Centre" : "Cosmos Melbourne Experience Centre"} subtitle={isVi ? "Experience lighting through the vibrance of local design and artistry" : "Experience lighting through the vibrance of local design and artistry"} href={withLocale("/projects")} />
               </div>
               <Link href={withLocale("/projects")} onClick={onClose} className="text-[1.05rem] font-semibold text-[#1139F5]">
                 {labels.viewAll}
@@ -390,7 +390,7 @@ function MegaMenuPanel({
     <div className="border-t border-white/10 bg-white text-black shadow-[0_25px_70px_rgba(0,0,0,0.18)]">
       <div className="mx-auto grid max-w-[1712px] grid-cols-12 gap-10 px-6 py-8 md:px-12 lg:px-14">
         <div className="col-span-12 md:col-span-3">
-          <MenuPanelTitle>{isVi ? "Why Unios" : "Why Unios"}</MenuPanelTitle>
+          <MenuPanelTitle>{isVi ? "Why Cosmos" : "Why Cosmos"}</MenuPanelTitle>
           <div className="space-y-3 text-[1rem] leading-6 text-black/65">
             <p>{isVi ? "We share resources with the world to shape the future of building projects." : "We share resources with the world to shape the future of building projects."}</p>
           </div>
@@ -406,14 +406,14 @@ function MegaMenuPanel({
               </Link>
             ))}
           </div>
-          <Link href={withLocale("/brand/why-unios")} onClick={onClose} className="mt-6 inline-block text-[1.05rem] font-medium text-[#1139F5]">
+          <Link href={withLocale("/brand/why-cosmos")} onClick={onClose} className="mt-6 inline-block text-[1.05rem] font-medium text-[#1139F5]">
             {isVi ? "Learn more" : "Learn more"}
           </Link>
         </div>
 
         <div className="col-span-12 md:col-span-3">
-          <MenuPanelTitle>{isVi ? "About Unios" : "About Unios"}</MenuPanelTitle>
-          <MenuImageCard image={culture1} title={isVi ? "About Unios" : "About Unios"} subtitle={isVi ? "Design and technology" : "Design and technology"} href={withLocale("/brand/about")} />
+          <MenuPanelTitle>{isVi ? "About Cosmos" : "About Cosmos"}</MenuPanelTitle>
+          <MenuImageCard image={culture1} title={isVi ? "About Cosmos" : "About Cosmos"} subtitle={isVi ? "Design and technology" : "Design and technology"} href={withLocale("/brand/about")} />
         </div>
 
         <div className="col-span-12 md:col-span-3">
@@ -423,7 +423,7 @@ function MegaMenuPanel({
 
         <div className="col-span-12 md:col-span-3">
           <MenuPanelTitle>{isVi ? "Our Culture" : "Our Culture"}</MenuPanelTitle>
-          <MenuImageCard image={culture3} title={isVi ? "Our Culture" : "Our Culture"} subtitle={isVi ? "At Unios..." : "At Unios..."} href={withLocale("/brand/our-culture")} />
+          <MenuImageCard image={culture3} title={isVi ? "Our Culture" : "Our Culture"} subtitle={isVi ? "At Cosmos..." : "At Cosmos..."} href={withLocale("/brand/our-culture")} />
         </div>
       </div>
     </div>
@@ -543,7 +543,7 @@ export default function Header() {
           <div className="flex items-center gap-3">
             <Link href={withLocale("/")} className="flex items-center" data-testid="nav-logo">
               <span className={cn("text-[2.15rem] font-bold tracking-[-0.06em] leading-none transition-colors", textColor)}>
-                unios.
+                Cosmos.
               </span>
             </Link>
 

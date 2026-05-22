@@ -39,7 +39,7 @@ export default function PrivacyPolicyPage() {
           <section id="use-of-data">
             <h2 className="text-2xl font-semibold mt-12 mb-4">Use of Data</h2>
             <p>
-              Unios uses the collected data for various purposes:
+              Cosmos uses the collected data for various purposes:
             </p>
             <ul>
               <li>To provide and maintain our Service</li>
@@ -70,7 +70,7 @@ export default function PrivacyPolicyPage() {
             <p>
               If you have any questions about this Privacy Policy, please contact us:
             </p>
-            <p>Email: privacy@unios.com</p>
+            <p>Email: privacy@Cosmos.com</p>
           </section>
         </main>
       </div>

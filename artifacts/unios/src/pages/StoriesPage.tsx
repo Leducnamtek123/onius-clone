@@ -54,7 +54,7 @@ const stories = [
     title: "Award season 2026 roundup",
     category: "Culture",
     excerpt: "Celebrating the architectural practices that have pushed boundaries with lighting this year.",
-    author: "Unios Editorial",
+    author: "Cosmos Editorial",
     date: "02 Sep 2025",
     image: collage3,
   },

@@ -33,7 +33,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 gap-14 lg:grid-cols-[320px_minmax(0,1fr)]">
           <div>
             <Link href={withLocale("/")} className="inline-flex items-center">
-              <span className="text-[3rem] font-bold tracking-[-0.06em] leading-none">unios.</span>
+              <span className="text-[3rem] font-bold tracking-[-0.06em] leading-none">Cosmos.</span>
             </Link>
 
             <div className="mt-14">
@@ -60,7 +60,7 @@ export default function Footer() {
                 </div>
                 <div className="mt-6 space-y-1 text-sm font-semibold text-white">
                   <p>+84 901435485</p>
-                  <p>vietnam@unios.com</p>
+                  <p>vietnam@Cosmos.com</p>
                 </div>
 
                 <div className="mt-8 space-y-3 text-sm font-semibold">
@@ -129,7 +129,7 @@ export default function Footer() {
             </div>
 
             <div className="mt-16 flex flex-col gap-3 border-t border-white/10 pt-8 text-sm text-white/45 md:flex-row md:items-center md:justify-between">
-              <p>© 2023 Unios Pty Ltd</p>
+              <p>© 2023 Cosmos Pty Ltd</p>
               <div className="flex flex-wrap gap-5">
                 <a href="#" className="transition-colors hover:text-white">
                   {t("footer.privacyPolicy")}
