@@ -154,7 +154,7 @@ function ConfiguratorMock({ progress }: { progress: MotionValue<number> }) {
         className="hidden right-[-1rem] top-[4.2rem] max-w-[9rem] text-center md:block"
       />
       <motion.div
-        style={{ x: buttonX, opacity: buttonOpacity }}
+        style={{ y: buttonY, opacity: buttonOpacity }}
         className="absolute -left-1 bottom-6 hidden gap-3 md:-left-12 md:flex"
       >
         <div className="grid h-11 w-11 place-items-center rounded-sm bg-white text-[#2459e8] shadow-[0_8px_24px_rgba(0,0,0,0.18)]">
