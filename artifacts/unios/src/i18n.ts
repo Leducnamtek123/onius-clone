@@ -110,9 +110,12 @@ const resources = {
           configure: "Configure",
         },
         configurator: {
-          line1: "Configure projects",
-          line2: "and manage lighting",
-          line3: "more easily than ever.",
+          line1: "Configuring and managing your lighting project has never been easier.",
+          line2: "Progressively specify technical specifications.",
+          line3: "Product finishes.",
+          line4: "Save as a favourite or add to a Toolbox project.",
+          line5: "Conveniently access product resources, 3D assets and more.",
+          line6: "Start configuring now.",
         },
         brandPillars: {
           aiControl: "AI applications in lighting control...",
@@ -230,9 +233,12 @@ const resources = {
           configure: "Cấu hình",
         },
         configurator: {
-          line1: "Định cấu hình dự án",
-          line2: "và quản lý chiếu sáng",
-          line3: "dễ dàng hơn bao giờ hết.",
+          line1: "Việc cấu hình và quản lý dự án chiếu sáng chưa bao giờ dễ dàng hơn.",
+          line2: "Từng bước xác định thông số kỹ thuật.",
+          line3: "Lớp hoàn thiện sản phẩm.",
+          line4: "Lưu vào yêu thích hoặc thêm vào dự án Toolbox.",
+          line5: "Truy cập thuận tiện tài nguyên sản phẩm, tài sản 3D và nhiều hơn nữa.",
+          line6: "Bắt đầu cấu hình ngay.",
         },
         brandPillars: {
           aiControl: "Ứng dụng AI trong điều khiển...",

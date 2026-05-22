@@ -6,30 +6,36 @@ import { useTranslation } from "react-i18next";
 import configuratorProduct from "@/assets/configurator.png";
 import collage3 from "@/assets/collage-3.png";
 
-const storyLineKeys = ["home.configurator.line1", "home.configurator.line2", "home.configurator.line3"];
+const storyLineKeys = [
+  "home.configurator.line1",
+  "home.configurator.line2",
+  "home.configurator.line3",
+  "home.configurator.line4",
+  "home.configurator.line5",
+  "home.configurator.line6",
+] as const;
 
 function FallingLine({
   text,
   index,
   progress,
-  direction,
 }: {
   text: string;
   index: number;
   progress: MotionValue<number>;
-  direction: "left" | "right";
 }) {
-  const start = index * 0.18 + 0.08;
-  const middle = start + 0.14;
-  const end = start + 0.3;
-  const x = useTransform(progress, [start, middle, end], direction === "left" ? [-72, 0, 0] : [72, 0, 0]);
+  const start = index * 0.11 + 0.06;
+  const middle = start + 0.12;
+  const end = start + 0.24;
+  const x = useTransform(progress, [start, middle, end], [-40, 0, 0]);
+  const y = useTransform(progress, [start, middle, end], [10, 0, 0]);
   const opacity = useTransform(progress, [start, middle, end], [0, 1, 1]);
-  const scale = useTransform(progress, [start, middle, end], [0.98, 1, 1]);
+  const scale = useTransform(progress, [start, middle, end], [0.985, 1, 1]);
 
   return (
     <motion.h2
-      style={{ x, opacity, scale }}
-      className="max-w-[17ch] text-balance text-[2rem] font-semibold leading-[0.96] tracking-[-0.02em] text-white md:max-w-[18ch] md:text-[2.8rem] lg:text-[3.45rem]"
+      style={{ x, y, opacity, scale }}
+      className="max-w-[20ch] text-balance text-[1.7rem] font-semibold leading-[0.96] tracking-[-0.02em] text-white md:max-w-[22ch] md:text-[2.55rem] lg:text-[3.1rem]"
     >
       {text}
     </motion.h2>
@@ -49,12 +55,13 @@ function ProductBadge({
   direction?: "left" | "right";
   className: string;
 }) {
-  const x = useTransform(progress, [start, start + 0.12, start + 0.3], direction === "left" ? [-44, 0, 0] : [44, 0, 0]);
-  const opacity = useTransform(progress, [start, start + 0.12, start + 0.3], [0, 1, 1]);
+  const x = useTransform(progress, [start, start + 0.12, start + 0.28], direction === "left" ? [-44, 0, 0] : [44, 0, 0]);
+  const y = useTransform(progress, [start, start + 0.12, start + 0.28], [20, 0, 0]);
+  const opacity = useTransform(progress, [start, start + 0.12, start + 0.28], [0, 1, 1]);
 
   return (
     <motion.div
-      style={{ x, opacity }}
+      style={{ x, y, opacity }}
       className={`pointer-events-none absolute rounded-[6px] border border-black/10 bg-white px-4 py-3 text-sm font-medium text-[#4a4a4a] shadow-[0_10px_28px_rgba(0,0,0,0.16)] ${className}`}
     >
       {text}
@@ -63,14 +70,17 @@ function ProductBadge({
 }
 
 function ConfiguratorMock({ progress }: { progress: MotionValue<number> }) {
-  const cardY = useTransform(progress, [0.1, 0.5, 1], [36, 0, -8]);
-  const cardOpacity = useTransform(progress, [0.08, 0.22, 0.75], [0, 1, 1]);
-  const glowOpacity = useTransform(progress, [0.08, 0.22, 0.75], [0, 1, 0.88]);
-  const buttonX = useTransform(progress, [0.24, 0.42, 0.85], [42, 0, 0]);
-  const buttonOpacity = useTransform(progress, [0.24, 0.42, 0.85], [0, 1, 1]);
+  const shellY = useTransform(progress, [0, 0.45, 1], [-18, 0, 26]);
+  const cardY = useTransform(progress, [0.08, 0.35, 0.72], [-52, 0, 14]);
+  const cardOpacity = useTransform(progress, [0.05, 0.2, 0.82], [0, 1, 1]);
+  const glowOpacity = useTransform(progress, [0.08, 0.22, 0.75], [0, 0.95, 0.82]);
+  const buttonY = useTransform(progress, [0.38, 0.58, 0.95], [18, 0, 0]);
+  const buttonOpacity = useTransform(progress, [0.38, 0.58, 0.95], [0, 1, 1]);
+  const asideOpacity = useTransform(progress, [0.5, 0.68, 0.95], [0, 1, 1]);
+  const asideX = useTransform(progress, [0.5, 0.68, 0.95], [36, 0, 0]);
 
   return (
-    <div className="relative mx-auto w-full max-w-[32rem]">
+    <motion.div style={{ y: shellY }} className="relative mx-auto w-full max-w-[32rem]">
       <motion.div
         style={{ opacity: glowOpacity }}
         className="absolute inset-x-6 top-8 h-[88%] rounded-[28px] bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.88),rgba(255,255,255,0.2)_52%,rgba(255,255,255,0)_72%)] blur-xl"
@@ -89,7 +99,10 @@ function ConfiguratorMock({ progress }: { progress: MotionValue<number> }) {
           />
         </div>
 
-        <div className="mt-6 flex items-center justify-between gap-4">
+        <motion.div
+          style={{ x: asideX, opacity: asideOpacity }}
+          className="mt-6 flex items-center justify-between gap-4"
+        >
           <div>
             <p className="text-[0.7rem] font-semibold uppercase tracking-[0.24em] text-black/45">
               Product
@@ -101,10 +114,10 @@ function ConfiguratorMock({ progress }: { progress: MotionValue<number> }) {
           <div className="rounded-full border border-black/10 px-3 py-1 text-xs font-semibold text-black/50">
             Preview
           </div>
-        </div>
+        </motion.div>
 
         <motion.button
-          style={{ x: buttonX, opacity: buttonOpacity }}
+          style={{ y: buttonY, opacity: buttonOpacity }}
           type="button"
           className="mt-6 inline-flex w-full items-center justify-center rounded-[10px] bg-[#2142f3] px-5 py-3 text-sm font-semibold text-white shadow-[0_12px_28px_rgba(33,66,243,0.35)]"
         >
@@ -115,28 +128,28 @@ function ConfiguratorMock({ progress }: { progress: MotionValue<number> }) {
       <ProductBadge
         text="2700K - 6500K"
         progress={progress}
-        start={0.2}
+        start={0.26}
         direction="left"
         className="hidden left-[-1.25rem] top-[4.4rem] md:block md:left-[-2.75rem]"
       />
       <ProductBadge
         text="3000K"
         progress={progress}
-        start={0.28}
+        start={0.34}
         direction="left"
         className="hidden left-[-0.5rem] top-[8.2rem] md:block md:left-[-2rem]"
       />
       <ProductBadge
         text="Textured White / White"
         progress={progress}
-        start={0.18}
+        start={0.42}
         direction="right"
         className="hidden right-[-0.5rem] top-[1.4rem] max-w-[9rem] text-center md:block"
       />
       <ProductBadge
         text="Textured Black / Black"
         progress={progress}
-        start={0.26}
+        start={0.48}
         direction="right"
         className="hidden right-[-1rem] top-[4.2rem] max-w-[9rem] text-center md:block"
       />
@@ -151,7 +164,7 @@ function ConfiguratorMock({ progress }: { progress: MotionValue<number> }) {
           <Heart className="h-4 w-4" />
         </div>
       </motion.div>
-    </div>
+    </motion.div>
   );
 }
 
@@ -189,14 +202,13 @@ export default function ConfiguratorSection() {
 
         <div className="pointer-events-none relative z-10 flex h-full items-center px-6 md:px-10 lg:px-16">
           <div className="mx-auto grid w-full max-w-[1600px] grid-cols-1 items-center gap-12 md:grid-cols-[1.05fr_0.95fr] md:gap-10 lg:gap-16">
-            <div className="flex flex-col gap-4 md:gap-5 lg:gap-6">
+            <div className="flex flex-col gap-3 md:gap-4 lg:gap-5">
               {storyLineKeys.map((key, index) => (
                 <FallingLine
                   key={key}
                   text={t(key)}
                   index={index}
                   progress={scrollYProgress}
-                  direction={index % 2 === 0 ? "left" : "right"}
                 />
               ))}
             </div>
