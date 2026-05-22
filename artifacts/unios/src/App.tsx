@@ -6,6 +6,9 @@ import { useLocation } from "wouter";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { getLocaleFromPath } from "@/i18n";
+import ComingSoonPage from "@/pages/ComingSoonPage";
+import { getReleaseMode } from "@/lib/release";
+import { isRouteOpenInRelease, normalizeRoutePath, routeGates } from "@/lib/release-routes";
 
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
@@ -30,6 +33,7 @@ import ApplicationsPage from "@/pages/ApplicationsPage";
 import PrivacyPolicyPage from "@/pages/PrivacyPolicyPage";
 
 const queryClient = new QueryClient();
+const releaseMode = getReleaseMode();
 
 const routes = [
   { path: "/", component: Home },
@@ -73,12 +77,27 @@ function LocaleSync() {
 function Router() {
   return (
     <Switch>
-      {routes.map((route) => (
-        <Route key={route.path} path={route.path} component={route.component} />
-      ))}
-      {routes.map((route) => (
-        <Route key={`/vi${route.path}`} path={`/vi${route.path === "/" ? "" : route.path}`} component={route.component} />
-      ))}
+      {routes.map((route) => {
+        const normalizedPath = normalizeRoutePath(route.path);
+        const gate = routeGates.find((item) => item.path === normalizedPath);
+        const enabled = isRouteOpenInRelease(normalizedPath, releaseMode);
+        const Page = enabled
+          ? route.component
+          : () => <ComingSoonPage title={gate?.title ?? "Coming soon"} copy={gate?.copy ?? "This page is not available yet."} />;
+
+        return <Route key={route.path} path={route.path} component={Page} />;
+      })}
+      {routes.map((route) => {
+        const localizedPath = route.path === "/" ? "/vi" : `/vi${route.path}`;
+        const normalizedPath = normalizeRoutePath(localizedPath);
+        const gate = routeGates.find((item) => item.path === normalizedPath);
+        const enabled = isRouteOpenInRelease(normalizedPath, releaseMode);
+        const Page = enabled
+          ? route.component
+          : () => <ComingSoonPage title={gate?.title ?? "Coming soon"} copy={gate?.copy ?? "This page is not available yet."} />;
+
+        return <Route key={localizedPath} path={localizedPath} component={Page} />;
+      })}
       <Route component={NotFound} />
     </Switch>
   );
