@@ -4,6 +4,8 @@ import { Link, useLocation } from "wouter";
 import { ChevronDown, Search, X } from "lucide-react";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { useLocaleRouting } from "@/hooks/use-locale-routing";
+import { getReleaseMode } from "@/lib/release";
+import { isRouteOpenInRelease } from "@/lib/release-routes";
 import { cn } from "@/lib/utils";
 import product1 from "@/assets/product-1.png";
 import product2 from "@/assets/product-2.png";
@@ -35,22 +37,26 @@ function MenuLink({
   label,
   onClick,
   active = false,
+  comingSoon = false,
 }: {
   href: string;
   label: string;
   onClick?: () => void;
   active?: boolean;
+  comingSoon?: boolean;
 }) {
   return (
     <Link
       href={href}
       onClick={onClick}
       className={cn(
-        "block text-[1.02rem] leading-[1.35] text-black/65 transition-colors hover:text-black",
+        "flex items-center gap-2 text-[1.02rem] leading-[1.35] text-black/65 transition-colors hover:text-black",
         active && "text-black",
+        comingSoon && "text-black/40",
       )}
     >
-      {label}
+      <span>{label}</span>
+      {comingSoon ? <span className="text-[9px] font-semibold uppercase tracking-[0.2em] text-[#b15b00]">Soon</span> : null}
     </Link>
   );
 }
@@ -60,18 +66,23 @@ function MenuImageCard({
   title,
   subtitle,
   href,
+  comingSoon = false,
 }: {
   image: string;
   title: string;
   subtitle?: string;
   href?: string;
+  comingSoon?: boolean;
 }) {
   const body = (
     <>
       <div className="overflow-hidden rounded-[6px]">
         <img src={image} alt={title} className="h-[130px] w-full object-cover transition-transform duration-300 hover:scale-[1.02]" />
       </div>
-      <div className="mt-4 text-[1rem] leading-snug text-black">{title}</div>
+      <div className={cn("mt-4 flex items-center gap-2 text-[1rem] leading-snug", comingSoon ? "text-black/55" : "text-black")}>
+        <span>{title}</span>
+        {comingSoon ? <span className="text-[9px] font-semibold uppercase tracking-[0.2em] text-[#b15b00]">Soon</span> : null}
+      </div>
       {subtitle ? <div className="mt-2 text-[0.95rem] text-black/60">{subtitle}</div> : null}
     </>
   );
@@ -89,13 +100,17 @@ function MegaMenuPanel({
   menu,
   isVi,
   withLocale,
+  releaseMode,
   onClose,
 }: {
   menu: MenuKey;
   isVi: boolean;
   withLocale: (path: string) => string;
+  releaseMode: ReturnType<typeof getReleaseMode>;
   onClose: () => void;
 }) {
+  const showSoon = (path: string) => releaseMode === "customer-demo" && !isRouteOpenInRelease(path, releaseMode);
+
   if (menu === "products") {
     const labels = isVi
       ? {
@@ -138,8 +153,13 @@ function MegaMenuPanel({
                 <MenuPanelTitle>{labels.recent}</MenuPanelTitle>
                 <div className="text-[1.05rem] text-black/35">You have not viewed any products.</div>
               </div>
-              <Link href={withLocale("/products")} onClick={onClose} className="text-[1.05rem] font-semibold text-[#1139F5]">
+              <Link
+                href={withLocale("/products")}
+                onClick={onClose}
+                className={cn("text-[1.05rem] font-semibold", showSoon("/products") ? "text-black/45" : "text-[#1139F5]")}
+              >
                 {labels.viewAll}
+                {showSoon("/products") ? <span className="ml-2 text-[9px] font-semibold uppercase tracking-[0.2em] text-[#b15b00]">Soon</span> : null}
               </Link>
             </div>
           </div>
@@ -149,7 +169,7 @@ function MegaMenuPanel({
               <MenuPanelTitle>{labels.categories}</MenuPanelTitle>
               <div className="space-y-2">
                 {categories.map((item) => (
-                  <MenuLink key={item} href={withLocale("/products")} label={item} onClick={onClose} />
+                  <MenuLink key={item} href={withLocale("/products")} label={item} onClick={onClose} comingSoon={showSoon("/products")} />
                 ))}
               </div>
             </div>
@@ -158,7 +178,7 @@ function MegaMenuPanel({
               <MenuPanelTitle>{labels.collections}</MenuPanelTitle>
               <div className="space-y-2">
                 {collections.map((item) => (
-                  <MenuLink key={item} href={withLocale("/products")} label={item} onClick={onClose} />
+                  <MenuLink key={item} href={withLocale("/products")} label={item} onClick={onClose} comingSoon={showSoon("/products")} />
                 ))}
               </div>
             </div>
@@ -167,13 +187,14 @@ function MegaMenuPanel({
               <MenuPanelTitle>{labels.applications}</MenuPanelTitle>
               <div className="space-y-2">
                 {applications.map((item) => (
-                  <MenuLink key={item} href={withLocale("/applications/residential")} label={item} onClick={onClose} />
+                  <MenuLink key={item} href={withLocale("/applications/residential")} label={item} onClick={onClose} comingSoon={showSoon("/applications/residential")} />
                 ))}
               </div>
               <div className="mt-8">
                 <MenuPanelTitle>{labels.explore}</MenuPanelTitle>
-                <Link href={withLocale("/products")} onClick={onClose} className="text-[1.05rem] font-medium text-[#1139F5]">
+                <Link href={withLocale("/products")} onClick={onClose} className={cn("text-[1.05rem] font-medium", showSoon("/products") ? "text-black/45" : "text-[#1139F5]")}>
                   {labels.exploreLink}
+                  {showSoon("/products") ? <span className="ml-2 text-[9px] font-semibold uppercase tracking-[0.2em] text-[#b15b00]">Soon</span> : null}
                 </Link>
               </div>
             </div>
@@ -214,10 +235,21 @@ function MegaMenuPanel({
             <div className="flex items-start justify-between gap-6">
               <div>
                 <MenuPanelTitle>{labels.featured}</MenuPanelTitle>
-                <MenuImageCard image={projectHero} title={isVi ? "Cosmos Melbourne Experience Centre" : "Cosmos Melbourne Experience Centre"} subtitle={isVi ? "Experience lighting through the vibrance of local design and artistry" : "Experience lighting through the vibrance of local design and artistry"} href={withLocale("/projects")} />
+                <MenuImageCard
+                  image={projectHero}
+                  title={isVi ? "Cosmos Melbourne Experience Centre" : "Cosmos Melbourne Experience Centre"}
+                  subtitle={isVi ? "Experience lighting through the vibrance of local design and artistry" : "Experience lighting through the vibrance of local design and artistry"}
+                  href={withLocale("/projects")}
+                  comingSoon={showSoon("/projects")}
+                />
               </div>
-              <Link href={withLocale("/projects")} onClick={onClose} className="text-[1.05rem] font-semibold text-[#1139F5]">
+              <Link
+                href={withLocale("/projects")}
+                onClick={onClose}
+                className={cn("text-[1.05rem] font-semibold", showSoon("/projects") ? "text-black/45" : "text-[#1139F5]")}
+              >
                 {labels.viewAll}
+                {showSoon("/projects") ? <span className="ml-2 text-[9px] font-semibold uppercase tracking-[0.2em] text-[#b15b00]">Soon</span> : null}
               </Link>
             </div>
           </div>
@@ -227,7 +259,7 @@ function MegaMenuPanel({
               <MenuPanelTitle>{labels.countries}</MenuPanelTitle>
               <div className="space-y-2">
                 {countries.map((item) => (
-                  <MenuLink key={item} href={withLocale("/projects")} label={item} onClick={onClose} />
+                  <MenuLink key={item} href={withLocale("/projects")} label={item} onClick={onClose} comingSoon={showSoon("/projects")} />
                 ))}
               </div>
             </div>
@@ -236,15 +268,16 @@ function MegaMenuPanel({
               <MenuPanelTitle>{labels.applications}</MenuPanelTitle>
               <div className="space-y-2">
                 {projectApps.map((item) => (
-                  <MenuLink key={item} href={withLocale("/projects")} label={item} onClick={onClose} />
+                  <MenuLink key={item} href={withLocale("/projects")} label={item} onClick={onClose} comingSoon={showSoon("/projects")} />
                 ))}
               </div>
             </div>
 
             <div>
               <MenuPanelTitle>{labels.explore}</MenuPanelTitle>
-              <Link href={withLocale("/projects")} onClick={onClose} className="text-[1.05rem] font-medium text-[#1139F5]">
+              <Link href={withLocale("/projects")} onClick={onClose} className={cn("text-[1.05rem] font-medium", showSoon("/projects") ? "text-black/45" : "text-[#1139F5]")}>
                 {labels.exploreLink}
+                {showSoon("/projects") ? <span className="ml-2 text-[9px] font-semibold uppercase tracking-[0.2em] text-[#b15b00]">Soon</span> : null}
               </Link>
             </div>
           </div>
@@ -287,36 +320,55 @@ function MegaMenuPanel({
           <div className="col-span-12 md:col-span-4">
             <MenuPanelTitle>{labels.featured}</MenuPanelTitle>
             <div className="grid gap-6 sm:grid-cols-2">
-              <MenuImageCard image={storyFeatured} title={isVi ? "Creating wonderment through decorative lighting" : "Creating wonderment through decorative lighting"} subtitle={isVi ? "Fanny Soulard" : "Ross Gardam"} href={withLocale("/stories")} />
-              <MenuImageCard image={story1} title={isVi ? "Lighting and the Always-on Customer Experience" : "Lighting and the Always-on Customer Experience"} subtitle={isVi ? "We share resources..." : "Henry Luong"} href={withLocale("/stories")} />
+              <MenuImageCard
+                image={storyFeatured}
+                title={isVi ? "Creating wonderment through decorative lighting" : "Creating wonderment through decorative lighting"}
+                subtitle={isVi ? "Fanny Soulard" : "Ross Gardam"}
+                href={withLocale("/stories")}
+                comingSoon={showSoon("/stories")}
+              />
+              <MenuImageCard
+                image={story1}
+                title={isVi ? "Lighting and the Always-on Customer Experience" : "Lighting and the Always-on Customer Experience"}
+                subtitle={isVi ? "We share resources..." : "Henry Luong"}
+                href={withLocale("/stories")}
+                comingSoon={showSoon("/stories")}
+              />
             </div>
           </div>
 
           <div className="col-span-12 md:col-span-3">
-            <MenuPanelTitle>{labels.topics}</MenuPanelTitle>
-            <div className="space-y-3">
-              {topics.map((item) => (
-                <MenuLink key={item} href={withLocale("/stories")} label={item} onClick={onClose} />
-              ))}
+              <MenuPanelTitle>{labels.topics}</MenuPanelTitle>
+              <div className="space-y-3">
+                {topics.map((item) => (
+                  <MenuLink key={item} href={withLocale("/stories")} label={item} onClick={onClose} comingSoon={showSoon("/stories")} />
+                ))}
+              </div>
             </div>
-          </div>
 
           <div className="col-span-12 md:col-span-3">
-            <MenuPanelTitle>{labels.contributors}</MenuPanelTitle>
-            <div className="space-y-3">
-              {contributors.map((person) => (
-                <Link key={person.name} href={withLocale("/stories")} onClick={onClose} className="flex items-center gap-3 text-[1rem] text-black/75 hover:text-black">
+              <MenuPanelTitle>{labels.contributors}</MenuPanelTitle>
+              <div className="space-y-3">
+                {contributors.map((person) => (
+                <Link
+                  key={person.name}
+                  href={withLocale("/stories")}
+                  onClick={onClose}
+                  className={cn("flex items-center gap-3 text-[1rem]", showSoon("/stories") ? "text-black/45" : "text-black/75 hover:text-black")}
+                >
                   <img src={person.image} alt={person.name} className="h-7 w-7 rounded-full object-cover" />
                   <span>{person.name}</span>
+                  {showSoon("/stories") ? <span className="text-[9px] font-semibold uppercase tracking-[0.2em] text-[#b15b00]">Soon</span> : null}
                 </Link>
-              ))}
+                ))}
+              </div>
             </div>
-          </div>
 
           <div className="col-span-12 md:col-span-2">
             <MenuPanelTitle>{labels.explore}</MenuPanelTitle>
-            <Link href={withLocale("/stories/all")} onClick={onClose} className="text-[1.05rem] font-medium text-[#1139F5]">
+            <Link href={withLocale("/stories/all")} onClick={onClose} className={cn("text-[1.05rem] font-medium", showSoon("/stories/all") ? "text-black/45" : "text-[#1139F5]")}>
               {labels.exploreLink}
+              {showSoon("/stories/all") ? <span className="ml-2 text-[9px] font-semibold uppercase tracking-[0.2em] text-[#b15b00]">Soon</span> : null}
             </Link>
           </div>
         </div>
@@ -352,33 +404,46 @@ function MegaMenuPanel({
           <div className="col-span-12 md:col-span-3">
             <MenuPanelTitle>{labels.featured}</MenuPanelTitle>
             <div className="grid gap-5 sm:grid-cols-2">
-              <MenuImageCard image={product1} title={isVi ? "ION R Series Product Guide" : "ION R Series Product Guide"} subtitle={isVi ? "Product guide" : "Product guide"} href={withLocale("/images")} />
-              <MenuImageCard image={product2} title={isVi ? "Living with Light" : "Living with Light"} subtitle={isVi ? "Book" : "Book"} href={withLocale("/images")} />
+              <MenuImageCard
+                image={product1}
+                title={isVi ? "ION R Series Product Guide" : "ION R Series Product Guide"}
+                subtitle={isVi ? "Product guide" : "Product guide"}
+                href={withLocale("/images")}
+                comingSoon={showSoon("/images")}
+              />
+              <MenuImageCard
+                image={product2}
+                title={isVi ? "Living with Light" : "Living with Light"}
+                subtitle={isVi ? "Book" : "Book"}
+                href={withLocale("/images")}
+                comingSoon={showSoon("/images")}
+              />
             </div>
           </div>
 
           <div className="col-span-12 md:col-span-3">
-            <MenuPanelTitle>{labels.categories}</MenuPanelTitle>
-            <div className="space-y-2">
-              {resourceCategories.map((item) => (
-                <MenuLink key={item} href={withLocale("/images")} label={item} onClick={onClose} />
-              ))}
+              <MenuPanelTitle>{labels.categories}</MenuPanelTitle>
+              <div className="space-y-2">
+                {resourceCategories.map((item) => (
+                  <MenuLink key={item} href={withLocale("/images")} label={item} onClick={onClose} comingSoon={showSoon("/images")} />
+                ))}
+              </div>
             </div>
-          </div>
 
           <div className="col-span-12 md:col-span-3">
-            <MenuPanelTitle>{labels.products}</MenuPanelTitle>
-            <div className="space-y-2">
-              {resourceProducts.map((item) => (
-                <MenuLink key={item} href={withLocale("/products")} label={item} onClick={onClose} />
-              ))}
+              <MenuPanelTitle>{labels.products}</MenuPanelTitle>
+              <div className="space-y-2">
+                {resourceProducts.map((item) => (
+                  <MenuLink key={item} href={withLocale("/products")} label={item} onClick={onClose} comingSoon={showSoon("/products")} />
+                ))}
+              </div>
             </div>
-          </div>
 
           <div className="col-span-12 md:col-span-3">
             <MenuPanelTitle>{labels.explore}</MenuPanelTitle>
-            <Link href={withLocale("/images")} onClick={onClose} className="text-[1.05rem] font-medium text-[#1139F5]">
+            <Link href={withLocale("/images")} onClick={onClose} className={cn("text-[1.05rem] font-medium", showSoon("/images") ? "text-black/45" : "text-[#1139F5]")}>
               {labels.exploreLink}
+              {showSoon("/images") ? <span className="ml-2 text-[9px] font-semibold uppercase tracking-[0.2em] text-[#b15b00]">Soon</span> : null}
             </Link>
           </div>
         </div>
@@ -400,30 +465,32 @@ function MegaMenuPanel({
                 key={item.href}
                 href={withLocale(item.href)}
                 onClick={onClose}
-                className="block text-[1rem] text-black/70 transition-colors hover:text-black"
+                className={cn("flex items-center gap-2 text-[1rem] transition-colors hover:text-black", showSoon(item.href) ? "text-black/45" : "text-black/70")}
               >
-                {item.label}
+                <span>{item.label}</span>
+                {showSoon(item.href) ? <span className="text-[9px] font-semibold uppercase tracking-[0.2em] text-[#b15b00]">Soon</span> : null}
               </Link>
             ))}
           </div>
-          <Link href={withLocale("/brand/why-cosmos")} onClick={onClose} className="mt-6 inline-block text-[1.05rem] font-medium text-[#1139F5]">
+          <Link href={withLocale("/brand/why-cosmos")} onClick={onClose} className={cn("mt-6 inline-flex items-center gap-2 text-[1.05rem] font-medium", showSoon("/brand/why-cosmos") ? "text-black/45" : "text-[#1139F5]")}>
             {isVi ? "Learn more" : "Learn more"}
+            {showSoon("/brand/why-cosmos") ? <span className="text-[9px] font-semibold uppercase tracking-[0.2em] text-[#b15b00]">Soon</span> : null}
           </Link>
         </div>
 
         <div className="col-span-12 md:col-span-3">
           <MenuPanelTitle>{isVi ? "About Cosmos" : "About Cosmos"}</MenuPanelTitle>
-          <MenuImageCard image={culture1} title={isVi ? "About Cosmos" : "About Cosmos"} subtitle={isVi ? "Design and technology" : "Design and technology"} href={withLocale("/brand/about")} />
+          <MenuImageCard image={culture1} title={isVi ? "About Cosmos" : "About Cosmos"} subtitle={isVi ? "Design and technology" : "Design and technology"} href={withLocale("/brand/about")} comingSoon={showSoon("/brand/about")} />
         </div>
 
         <div className="col-span-12 md:col-span-3">
           <MenuPanelTitle>{isVi ? "Sustainability" : "Sustainability"}</MenuPanelTitle>
-          <MenuImageCard image={culture2} title={isVi ? "Sustainability" : "Sustainability"} subtitle={isVi ? "From materials to end of life" : "From materials to end of life"} href={withLocale("/brand/sustainability")} />
+          <MenuImageCard image={culture2} title={isVi ? "Sustainability" : "Sustainability"} subtitle={isVi ? "From materials to end of life" : "From materials to end of life"} href={withLocale("/brand/sustainability")} comingSoon={showSoon("/brand/sustainability")} />
         </div>
 
         <div className="col-span-12 md:col-span-3">
           <MenuPanelTitle>{isVi ? "Our Culture" : "Our Culture"}</MenuPanelTitle>
-          <MenuImageCard image={culture3} title={isVi ? "Our Culture" : "Our Culture"} subtitle={isVi ? "At Cosmos..." : "At Cosmos..."} href={withLocale("/brand/our-culture")} />
+          <MenuImageCard image={culture3} title={isVi ? "Our Culture" : "Our Culture"} subtitle={isVi ? "At Cosmos..." : "At Cosmos..."} href={withLocale("/brand/our-culture")} comingSoon={showSoon("/brand/our-culture")} />
         </div>
       </div>
     </div>
@@ -434,6 +501,8 @@ export default function Header() {
   const [location] = useLocation();
   const { t: tr } = useTranslation();
   const { locale, currentPath, withLocale } = useLocaleRouting();
+  const releaseMode = getReleaseMode();
+  const isCustomerDemo = releaseMode === "customer-demo";
   const [scrolled, setScrolled] = useState(false);
   const [openMenu, setOpenMenu] = useState<MenuKey | null>(null);
   const [searchOpen, setSearchOpen] = useState(false);
@@ -508,6 +577,7 @@ export default function Header() {
     toolbox: tr("nav.toolbox"),
     searchPlaceholder: tr("nav.searchPlaceholder"),
   };
+  const showSoon = (path: string) => isCustomerDemo && !isRouteOpenInRelease(path, releaseMode);
 
   return (
     <header className={cn("fixed inset-x-0 top-0 z-50 w-full", headerBg)} data-testid="header">
@@ -519,20 +589,24 @@ export default function Header() {
           </div>
 
           <div className="flex items-center justify-end gap-4">
-            <Link href={withLocale("/images")} className={cn("hover:opacity-70 transition-opacity", mutedTextColor)} data-testid="nav-image-library">
-              {navCopy.imageLibrary}
+            <Link href={withLocale("/images")} className={cn("flex items-center gap-2 transition-opacity hover:opacity-70", mutedTextColor)} data-testid="nav-image-library">
+              <span>{navCopy.imageLibrary}</span>
+              {showSoon("/images") ? <span className="text-[9px] font-semibold uppercase tracking-[0.2em] text-[#b15b00]">Soon</span> : null}
             </Link>
             <span className={cn("opacity-30", mutedTextColor)}>|</span>
-            <Link href={withLocale("/where-to-buy")} className={cn("hover:opacity-70 transition-opacity", mutedTextColor)} data-testid="nav-where-to-buy">
-              {navCopy.whereToBuy}
+            <Link href={withLocale("/where-to-buy")} className={cn("flex items-center gap-2 transition-opacity hover:opacity-70", mutedTextColor)} data-testid="nav-where-to-buy">
+              <span>{navCopy.whereToBuy}</span>
+              {showSoon("/where-to-buy") ? <span className="text-[9px] font-semibold uppercase tracking-[0.2em] text-[#b15b00]">Soon</span> : null}
             </Link>
             <span className={cn("opacity-30", mutedTextColor)}>|</span>
-            <Link href={withLocale("/contact")} className={cn("hover:opacity-70 transition-opacity", mutedTextColor)} data-testid="nav-contact">
-              {navCopy.contact}
+            <Link href={withLocale("/contact")} className={cn("flex items-center gap-2 transition-opacity hover:opacity-70", mutedTextColor)} data-testid="nav-contact">
+              <span>{navCopy.contact}</span>
+              {showSoon("/contact") ? <span className="text-[9px] font-semibold uppercase tracking-[0.2em] text-[#b15b00]">Soon</span> : null}
             </Link>
             <span className={cn("opacity-30", mutedTextColor)}>|</span>
-            <Link href={withLocale("/toolbox")} className={cn("hover:opacity-70 transition-opacity", mutedTextColor)} data-testid="nav-login">
-              {navCopy.login}
+            <Link href={withLocale("/toolbox")} className={cn("flex items-center gap-2 transition-opacity hover:opacity-70", mutedTextColor)} data-testid="nav-login">
+              <span>{navCopy.login}</span>
+              {showSoon("/toolbox") ? <span className="text-[9px] font-semibold uppercase tracking-[0.2em] text-[#b15b00]">Soon</span> : null}
             </Link>
           </div>
         </div>
@@ -551,7 +625,10 @@ export default function Header() {
               <span className="text-[9px] font-bold tracking-widest bg-white text-[#222] px-3 py-1 rounded-full leading-none">
                 NEW
               </span>
-              <span className={cn("text-sm font-semibold transition-colors hover:opacity-70", textColor)}>2026</span>
+              <span className={cn("flex items-center gap-2 text-sm font-semibold transition-colors hover:opacity-70", textColor)}>
+                <span>2026</span>
+                {showSoon("/2026") ? <span className="text-[9px] font-semibold uppercase tracking-[0.2em] text-[#b15b00]">Soon</span> : null}
+              </span>
             </Link>
           </div>
 
@@ -565,6 +642,7 @@ export default function Header() {
               ] as const
             ).map((item) => {
               const isActive = navState[item.key] || activeMenu === item.key;
+              const comingSoon = showSoon(item.href);
               return (
                 <div
                   key={item.key}
@@ -575,7 +653,7 @@ export default function Header() {
                   <Link
                     href={withLocale(item.href)}
                     className={cn(
-                      "relative inline-flex h-[60px] items-center transition-colors hover:opacity-70",
+                      "relative inline-flex h-[60px] items-center gap-2 transition-colors hover:opacity-70",
                       textColor,
                       isActive && !isDarkHero && "text-black",
                     )}
@@ -583,6 +661,7 @@ export default function Header() {
                     aria-current={navState[item.key] ? "page" : undefined}
                   >
                     <span>{item.label}</span>
+                    {comingSoon ? <span className="text-[9px] font-semibold uppercase tracking-[0.2em] text-[#b15b00]">Soon</span> : null}
                     {isActive && <span className={cn("absolute left-0 right-0 bottom-0 h-px", scrolled || !isDarkHero ? "bg-black" : "bg-white")} />}
                   </Link>
                 </div>
@@ -595,7 +674,7 @@ export default function Header() {
               onFocus={() => setOpenMenu("brand")}
             >
               <button
-                className={cn(
+              className={cn(
                   "relative inline-flex h-[60px] items-center gap-1 transition-colors hover:opacity-70",
                   textColor,
                   (navState.brand || activeMenu === "brand") && !isDarkHero && "text-black",
@@ -605,7 +684,10 @@ export default function Header() {
                 aria-expanded={activeMenu === "brand"}
                 aria-current={navState.brand ? "page" : undefined}
               >
-                <span>{navCopy.brand}</span>
+                <span className="flex items-center gap-2">
+                  <span>{navCopy.brand}</span>
+                  {showSoon("/brand/why-cosmos") ? <span className="text-[9px] font-semibold uppercase tracking-[0.2em] text-[#b15b00]">Soon</span> : null}
+                </span>
                 {(navState.brand || activeMenu === "brand") && <span className={cn("absolute left-0 right-0 bottom-0 h-px", scrolled || !isDarkHero ? "bg-black" : "bg-white")} />}
                 <ChevronDown className={cn("w-3.5 h-3.5 transition-transform duration-200", activeMenu === "brand" && "rotate-180")} />
               </button>
@@ -615,10 +697,11 @@ export default function Header() {
           <div className="flex items-center justify-self-end gap-3">
             <Link
               href={withLocale("/toolbox")}
-              className={cn("hidden md:flex text-sm font-medium transition-colors hover:opacity-70", textColor)}
+              className={cn("hidden md:flex items-center gap-2 text-sm font-medium transition-colors hover:opacity-70", textColor)}
               data-testid="nav-toolbox"
             >
-              {navCopy.toolbox}
+              <span>{navCopy.toolbox}</span>
+              {showSoon("/toolbox") ? <span className="text-[9px] font-semibold uppercase tracking-[0.2em] text-[#b15b00]">Soon</span> : null}
             </Link>
 
             <button
@@ -642,7 +725,7 @@ export default function Header() {
           >
             <div className="pointer-events-none absolute inset-x-0 top-0 h-[calc(100vh-92px)] bg-black/10 backdrop-blur-[1px]" />
             <div className="relative">
-              <MegaMenuPanel menu={activeMenu} isVi={isVi} withLocale={withLocale} onClose={() => setOpenMenu(null)} />
+              <MegaMenuPanel menu={activeMenu} isVi={isVi} withLocale={withLocale} releaseMode={releaseMode} onClose={() => setOpenMenu(null)} />
             </div>
           </div>
         )}
