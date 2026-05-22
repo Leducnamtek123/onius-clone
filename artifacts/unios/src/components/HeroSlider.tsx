@@ -10,12 +10,8 @@ import hero3 from "@/assets/hero-3.png";
 import hero4 from "@/assets/hero-4.png";
 import hero5 from "@/assets/hero-5.png";
 import hero6 from "@/assets/hero-6.png";
-import hero1Loop from "@/assets/hero-1-loop.mp4";
-import hero2Loop from "@/assets/hero-2-loop.mp4";
-import hero3Loop from "@/assets/hero-3-loop.mp4";
-import hero4Loop from "@/assets/hero-4-loop.mp4";
-import hero5Loop from "@/assets/hero-5-loop.mp4";
-import hero6Loop from "@/assets/hero-6-loop.mp4";
+
+const heroVideoSrc = "https://cdn.coverr.co/videos/user-ai-generation-bIStZ9igaGr5/1080p.mp4";
 
 const slides = [
   {
@@ -36,7 +32,6 @@ const slides = [
     leftBg: "linear-gradient(180deg, #3b3b3b 0%, #d3d3d3 100%)",
     rightBg: "#3a2723",
     accent: "rgba(255,255,255,0.18)",
-    video: hero1Loop,
   },
   {
     eyebrow: "Featured",
@@ -47,7 +42,6 @@ const slides = [
     leftBg: "linear-gradient(180deg, #0a1716 0%, #0c1f21 100%)",
     rightBg: "#173033",
     accent: "rgba(128,255,247,0.14)",
-    video: hero2Loop,
   },
   {
     eyebrow: "Featured",
@@ -58,7 +52,6 @@ const slides = [
     leftBg: "linear-gradient(180deg, #0b1414 0%, #091212 100%)",
     rightBg: "#103337",
     accent: "rgba(109,255,169,0.14)",
-    video: hero3Loop,
   },
   {
     eyebrow: "Featured",
@@ -69,7 +62,6 @@ const slides = [
     leftBg: "linear-gradient(180deg, #2c2c2c 0%, #9b9b9b 100%)",
     rightBg: "#332523",
     accent: "rgba(255,255,255,0.12)",
-    video: hero4Loop,
   },
   {
     eyebrow: "Featured",
@@ -80,7 +72,6 @@ const slides = [
     leftBg: "linear-gradient(180deg, #1d1d1d 0%, #e0dedb 100%)",
     rightBg: "#2b1d1a",
     accent: "rgba(255,255,255,0.14)",
-    video: hero5Loop,
   },
   {
     eyebrow: "Featured",
@@ -91,7 +82,6 @@ const slides = [
     leftBg: "linear-gradient(180deg, #0a252b 0%, #0d3940 100%)",
     rightBg: "#16353a",
     accent: "rgba(120,239,255,0.16)",
-    video: hero6Loop,
   },
   {
     eyebrow: "Featured",
@@ -102,7 +92,6 @@ const slides = [
     leftBg: "linear-gradient(180deg, #373737 0%, #f1f1f1 100%)",
     rightBg: "#2f201d",
     accent: "rgba(255,255,255,0.14)",
-    video: hero6Loop,
   },
 ];
 
@@ -179,17 +168,16 @@ export default function HeroSlider() {
               className="relative h-full overflow-hidden"
             >
               <video
-                key={slide.video}
+                key={slide.title}
                 className="absolute inset-0 h-full w-full object-cover"
                 autoPlay
-                loop
                 muted
                 playsInline
-                preload="auto"
+                preload="metadata"
                 poster={slide.image}
                 draggable={false}
               >
-                <source src={slide.video} type="video/mp4" />
+                <source src={heroVideoSrc} type="video/mp4" />
               </video>
               <div className="absolute inset-0 bg-gradient-to-br from-black/20 via-transparent to-black/10" />
             </motion.div>
