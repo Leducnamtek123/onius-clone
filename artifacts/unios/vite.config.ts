@@ -2,6 +2,7 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import path from "path";
+import { execSync } from "node:child_process";
 import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
 
 const rawPort = process.env.PORT ?? "5173";
@@ -13,9 +14,24 @@ if (Number.isNaN(port) || port <= 0) {
 }
 
 const basePath = process.env.BASE_PATH ?? "/";
+const localGitBranch = (() => {
+  try {
+    return execSync("git branch --show-current", { encoding: "utf8" }).trim();
+  } catch {
+    return "";
+  }
+})();
+
+const releaseMode =
+  process.env.VERCEL_GIT_COMMIT_REF === "customer-demo" || localGitBranch === "customer-demo"
+    ? "customer-demo"
+    : "full";
 
 export default defineConfig({
   base: basePath,
+  define: {
+    "import.meta.env.VITE_RELEASE_MODE": JSON.stringify(releaseMode),
+  },
   plugins: [
     react(),
     tailwindcss(),
